@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Styles from './App.css';
 
 import Gallery from './Components/Gallery';
-
+//this is test
 class App extends Component {
   constructor(props)
     {
