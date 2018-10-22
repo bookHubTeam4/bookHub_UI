@@ -24,10 +24,11 @@ class App extends Component {
     .then(response =>  response.json())
     .then(json => {
       let {items} = json;
-
+      console.log("items")
+      console.log(items)
       this.setState({items: items});
     })
-    .then(console.log(this.state.items));
+    .then(console.log("hello "+this.state.items));
     }
 
     handleChange(event){
