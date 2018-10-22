@@ -91,5 +91,21 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bookHubTeam4/bookHub_UI.git"
+  },
+  "keywords": [
+    "pawan"
+  ],
+  "author": "pawan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bookHubTeam4/bookHub_UI/issues"
+  },
+  "homepage": "https://github.com/bookHubTeam4/bookHub_UI#readme"
 }
