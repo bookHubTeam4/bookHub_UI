@@ -19,7 +19,11 @@
   font-size: 70px;
   font-weight: bold;
   letter-spacing: 2px;
+}
 
+.slogo{
+  height:80px;
+  margin: 20px;
 }
 
 .spen{

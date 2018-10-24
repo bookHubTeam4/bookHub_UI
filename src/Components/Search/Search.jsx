@@ -1,13 +1,17 @@
 import React from "react";
 import { Glyphicon, Row, Col } from "react-bootstrap";
 import Pen from "../../img/quil.svg";
+import Book from "../../img/books.svg";
 import Style from "../Search/Search.css";
 
 const Search = props => {
   return (
       <div className={Style.pimg}>
       <Row>
-          <Col>
+          <Col md={6}>
+              <img className={Style.slogo} src={Book} alt="Book"/>
+          </Col>
+          <Col md={6}>
               hello
           </Col>
       </Row>
