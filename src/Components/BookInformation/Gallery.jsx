@@ -1,12 +1,15 @@
 import React  from 'react';
 //import {FormGroup, FormControl,InputGroup, Glyphicon} from 'react-bootstrap';
+import {Redirect } from "react-router-dom";
 
 export default class Gallery extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            infoLink: ''
+            infoLink: '',
+            toInfoPage: false,
+            isbn : 0
         };
     
         // This binding is necessary to make `this` work in the callback
@@ -17,7 +20,13 @@ export default class Gallery extends React.Component{
         e.preventDefault();
         console.log('The link was clicked. with '+ param);
         this.setState({
-          infoLink: param});
+            toInfoPage: true});
+        this.setState({
+          infoLink: param,
+        isbn: param[1].identifier});
+
+         
+
           console.log("checking type"+ param[1].type.toString());
           console.log("checking isbn"+ param[1].identifier.toString());
         console.log("this is "+this.state.infoLink);
@@ -25,7 +34,18 @@ export default class Gallery extends React.Component{
 
 
     render(){
+
+
+        if (this.state.toInfoPage === true) {
+        
+        return <Redirect to= {`/bookInfo/${this.state.isbn}`} /> }
+
+            else {
+
         return (
+
+
+
             <div>
             {
                 this.props.items.map((item , i) => {
@@ -48,6 +68,6 @@ export default class Gallery extends React.Component{
                 })
             }</div>
 
-        );
+        ); }
     }
 }
