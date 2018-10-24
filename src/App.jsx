@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import Styles from './App.css';
+import React, { Component } from "react";
+import SearchMain from "../src/Containers/SearchMain/SearchMain";
+import { BrowserRouter, Route } from "react-router-dom";
+import Styles from "./App.css";
 
 import Gallery from './Components/Gallery';
 
@@ -46,27 +48,33 @@ class App extends Component {
     
     return (
 
-      //<Router history={hashHistory}>
-      //<Route path='/' component={App} />
-      //<Route path='/bookInfo' component={SelectedBookInfo} />
-    
-      <div className={Styles.App}>
-
-
-        <p>BookHub</p>
-
-        <label>
-          Name:
-          <input type="text" placeholder="Search for a book" value={this.state.value} onChange= {this.handleChange} />
-          <input type="submit" value= "Submit"  onClick={this.search} />
-        </label>
-  <form>
-
-  </form>
-  <Gallery items={this.state.items} />
-      </div>
 
       //</Router>
+
+      <BrowserRouter>
+        <Route path="/" exact component={SearchMain} />
+
+ <div className={Styles.App}>
+
+
+<p>BookHub</p>
+
+<label>
+  Name:
+  <input type="text" placeholder="Search for a book" value={this.state.value} onChange= {this.handleChange} />
+  <input type="submit" value= "Submit"  onClick={this.search} />
+</label>
+<form>
+
+</form>
+<Gallery items={this.state.items} />
+</div>
+
+
+
+
+      </BrowserRouter>
+
     );
   }
 }

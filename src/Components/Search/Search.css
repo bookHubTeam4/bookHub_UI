@@ -1,0 +1,54 @@
+.pimg {
+  /* opacity:0.90; */
+  overflow-x: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("../../img/search_cover.jpeg");
+  min-height: 100vh;
+}
+
+.stext {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  font-family: 'Niconne', cursive;
+  text-align: center;
+  color: #fbedb1;
+  font-size: 70px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.slogo{
+  height:80px;
+  margin: 20px;
+}
+
+.spen{
+  height:80px;
+  margin-bottom: 55px;
+}
+
+.ptext {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 27px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+input {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+.searchText {
+  opacity: 0.9;
+  width: 40%;
+}
