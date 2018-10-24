@@ -18,7 +18,8 @@ export default class Gallery extends React.Component{
         console.log('The link was clicked. with '+ param);
         this.setState({
           infoLink: param});
-
+          console.log("checking type"+ param[1].type.toString());
+          console.log("checking isbn"+ param[1].identifier.toString());
         console.log("this is "+this.state.infoLink);
       }
 
@@ -28,11 +29,12 @@ export default class Gallery extends React.Component{
             <div>
             {
                 this.props.items.map((item , i) => {
-                    let {title, imageLinks , infoLink} = item.volumeInfo
+                    let {title, imageLinks , infoLink,industryIdentifiers} = item.volumeInfo;
+                   
                     return (
                         <a href ={infoLink}  
                         target = "_blank"
-                        key={i} className = "book" onClick= {e => this.handleClick(infoLink,e)} >
+                        key={i} className = "book" onClick= {e => this.handleClick(industryIdentifiers,e)} >
                         <img 
                         src ={imageLinks !== undefined? imageLinks.thumbnail : ''} 
                         alt = "book image"

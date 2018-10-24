@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Styles from './App.css';
 
 import Gallery from './Components/Gallery';
+
+
+////////////////for routing
+//import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+//import SelectedBookInfo from './Components/SelectedBookInfo';
+/////////////////////////
 //this is test
 class App extends Component {
   constructor(props)
@@ -39,6 +45,11 @@ class App extends Component {
   render() {
     
     return (
+
+      //<Router history={hashHistory}>
+      //<Route path='/' component={App} />
+      //<Route path='/bookInfo' component={SelectedBookInfo} />
+    
       <div className={Styles.App}>
 
 
@@ -54,6 +65,8 @@ class App extends Component {
   </form>
   <Gallery items={this.state.items} />
       </div>
+
+      //</Router>
     );
   }
 }
