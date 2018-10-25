@@ -18,19 +18,23 @@ export default class BookInfo extends Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         console.log("hellpp");
 
         console.log(window.location.href) // "im"
         console.log(window.location.href.substr(window.location.href.lastIndexOf('/') + 1));
        let isbn = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
        BookInfoService(isbn)
-       .then(e => e.json())
-       .then(e => {console.log(e);
-        this.setState({items : e.json()});
-
-        console.log(this.state.items);
-    });
+       .then( e => e.json()).then(e=>{
+           console.log(e)
+           this.setState({items:e})
+       })
+     
+       // this.setState({items : e.json()});
+        console.log("im in book info component");
+       // console.log(this.state.items);
+        //console.log(this.state.items.title);
+   // });
 
     }
 

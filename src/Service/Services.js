@@ -35,12 +35,16 @@ export const BookInfoService = isbn => {
             {
                 method: "GET",
                 mode: "cors"
-            }).then(response => response.json()).then(e => console.log(e))
-
-
-
-            // console.log( response.json()); 
+            }).then(response => {
+                if (response.ok) {
+                    resolve(response)
+                } else {
+                    reject(response.error)
+                }
+            })
             .catch(err => reject(err))
+
+
     });
 };
 
