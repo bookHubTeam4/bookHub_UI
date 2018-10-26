@@ -46,7 +46,7 @@ class SignInForm extends Component {
               </div>
 
               <div className={Style.FormField}>
-                  <button className="btn btn-primary">Sign In</button> <Link to="/" className={Style.FormField__Link}>Create an account</Link>
+                  <button className="btn btn-primary">Sign In</button> <Link to="/signUp" className={Style.FormField__Link}>Create an account</Link>
               </div>
             </form>
           </div>

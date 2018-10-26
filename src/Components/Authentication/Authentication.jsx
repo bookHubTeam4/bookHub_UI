@@ -19,12 +19,12 @@ export class Authentication extends Component{
 
       <div className={Style.login__Form}>
           <div className={Style.FormTitle}>
-              <NavLink to="/signin" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign In</NavLink> or <NavLink exact to="/login" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign Up</NavLink>
+              <NavLink to="/login" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign In</NavLink> or <NavLink exact to="/signUp" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign Up</NavLink>
           </div>
 
-          <Route exact path="/login" component={SignUpForm}>
+          <Route exact path="/login" component={SignInForm}>
           </Route>
-          <Route path="/signin" component={SignInForm}>
+          <Route path="/signUp" component={SignUpForm}>
           </Route>
       </div>
 
