@@ -1,5 +1,7 @@
 import React from "react";
 import Search from "../../Components/Search/Search";
+import SearchLogin from "../../Components/SearchLogin/SearchLogin";
+import { connect } from "react-redux";
 import { searchService } from "../../Service/Services";
 
 class SearchMain extends React.Component {
@@ -27,14 +29,33 @@ class SearchMain extends React.Component {
   };
 
   render() {
-    return (
-      <Search
-        text={this.searchInput}
-        click={this.onSearch}
-        books={this.state.books}
-      />
-    );
+    var user = null;
+    console.log(this.props.tokken);
+    if (this.props.tokken) {
+      user = (
+        <SearchLogin
+          text={this.searchInput}
+          click={this.onSearch}
+          books={this.state.books}
+        />
+      );
+    } else {
+      user = (
+        <Search
+          text={this.searchInput}
+          click={this.onSearch}
+          books={this.state.books}
+        />
+      );
+    }
+    return <React.Fragment>{user}</React.Fragment>;
   }
 }
 
-export default SearchMain;
+const mapStateToProps = state => {
+  return {
+    tokken: state.tokken
+  };
+};
+
+export default connect(mapStateToProps)(SearchMain);

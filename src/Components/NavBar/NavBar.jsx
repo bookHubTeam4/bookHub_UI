@@ -48,7 +48,7 @@ class NavBar extends React.Component {
             <LinkContainer to="login">
               <span>Register</span>
             </LinkContainer>
-          </MenuItem>f
+          </MenuItem>
         </ul>
       </React.Fragment>
     );
@@ -57,7 +57,6 @@ class NavBar extends React.Component {
         <button
           className={Styles.navBtn}
           onClick={e => {
-            console.log("elvis");
             this.setState({ show: true });
           }}
         >
