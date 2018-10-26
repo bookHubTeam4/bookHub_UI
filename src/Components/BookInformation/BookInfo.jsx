@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BookInfoService } from "../../Service/Services";
+import Style from "./BookInfoStyle.css";
+
 
 import {
     Container,
@@ -65,7 +67,7 @@ export default class BookInfo extends Component {
         if (this.state.flag) {
 
             return (
-                <div>
+                <div className={Style.pimg}>
 
                     <Jumbotron>
                         <Container>
@@ -80,7 +82,7 @@ export default class BookInfo extends Component {
 
                   
                  
-
+                  <Jumbotron >
                     <div class="row">
 
 
@@ -91,10 +93,11 @@ export default class BookInfo extends Component {
 
                         <div class="col-md-10">
 
-                            <h5> {this.state.items.book.description}</h5>
+                            <h4> {this.state.items.book.description}</h4>
                         </div>
 
                     </div>
+                    <br /> <br /> <br />
                     <div class="row">
                         <div class="col-md-4">
                             <p>AUTHOR : {this.state.items.book.author}</p>
@@ -104,8 +107,8 @@ export default class BookInfo extends Component {
                         
 
 
-                    <Jumbotron align="center">
-                        <div>
+                   
+                        <div align = "center">
                             <Button color="primary">Add To Reading List</Button>{' '}
                             <Button color="success">Finished Reading</Button>{' '}
                             <Button color="danger">Can't Buy?</Button>{' '}
