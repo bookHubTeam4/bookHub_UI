@@ -6,7 +6,8 @@ class SearchMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: ""
+      searchText: "",
+      books: []
     };
   }
 
@@ -15,15 +16,24 @@ class SearchMain extends React.Component {
   };
 
   onSearch = () => {
-    if (this.state.searchText.length > 2) {
+    if (this.state.searchText.length > 0) {
       searchService(this.state.searchText)
         .then(e => e.json())
-        .then(e => console.log(e));
+        .then(e => {
+          console.log(e.books);
+          this.setState({ books: e.books });
+        });
     }
   };
 
   render() {
-    return <Search text={this.searchInput} click={this.onSearch} />;
+    return (
+      <Search
+        text={this.searchInput}
+        click={this.onSearch}
+        books={this.state.books}
+      />
+    );
   }
 }
 
