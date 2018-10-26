@@ -45,7 +45,7 @@ class NavBar extends React.Component {
             </LinkContainer>
           </MenuItem>
           <MenuItem>
-            <LinkContainer to="login">
+            <LinkContainer to="/signUp">
               <span>Register</span>
             </LinkContainer>
           </MenuItem>f

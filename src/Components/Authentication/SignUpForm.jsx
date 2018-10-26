@@ -42,16 +42,16 @@ class SignUpForm extends Component {
         <div className="FormCenter">
             <form onSubmit={this.handleSubmit} className="form-group">
               <div className={Style.FormField}>
-                <input type="text" id="fname" className="form-control" placeholder="Enter your first name" name="fname"  onChange={this.handleChange} />
+                <input type="text" id="fname" className="form-control" placeholder="Enter your first name" name="fname"  onChange={this.handleChange} required/>
               </div>
               <div className={Style.FormField}>
-                <input type="text" id="lname" className="form-control" placeholder="Enter your last name" name="lname" onChange={this.handleChange} />
+                <input type="text" id="lname" className="form-control" placeholder="Enter your last name" name="lname" onChange={this.handleChange} required />
               </div>
               <div className={Style.FormField}>
-                <input type="email" id="email" className="form-control" placeholder="Enter your email" name="email" onChange={this.handleChange} />
+                <input type="email" id="email" className="form-control" placeholder="Enter your email" name="email" onChange={this.handleChange} required/>
               </div>
               <div className={Style.FormField}>
-                <input type="password" id="password" className="form-control" placeholder="Enter your password" name="password" onChange={this.handleChange} />
+                <input type="password" id="password" className="form-control" placeholder="Enter your password" name="password" onChange={this.handleChange} required/>
               </div>
          
 
