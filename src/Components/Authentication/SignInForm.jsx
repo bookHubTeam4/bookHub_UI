@@ -29,8 +29,6 @@ class SignInForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
         loginService(this.state.email, this.state.password)
         .then(e=>e.json()).then(e=>console.table(e))
     }
@@ -48,7 +46,7 @@ class SignInForm extends Component {
               </div>
 
               <div className={Style.FormField}>
-                  <button className="btn btn-primary">Sign In</button> <Link to="/" className={Style.FormField__Link}>Create an account</Link>
+                  <button className="btn btn-primary">Sign In</button> <Link to="/signUp" className={Style.FormField__Link}>Create an account</Link>
               </div>
             </form>
           </div>

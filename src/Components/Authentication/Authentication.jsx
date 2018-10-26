@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Link, NavLink } from 'react-router-dom';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 import Style from '../Authentication/Authentication.css'
@@ -14,22 +14,22 @@ export class Authentication extends Component{
     }
 
     render(){
-    return (<Router basename="/">
+    return (<BrowserRouter>
     <div className={Style.login_bg}>
 
       <div className={Style.login__Form}>
           <div className={Style.FormTitle}>
-              <NavLink to="/sign-in" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign In</NavLink> or <NavLink exact to="/" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign Up</NavLink>
+              <NavLink to="/login" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign In</NavLink> or <NavLink exact to="/signUp" activeClassName={Style.FormTitle__Link} className={Style.FormTitle__Link}>Sign Up</NavLink>
           </div>
 
-          <Route exact path="/" component={SignUpForm}>
+          <Route exact path="/login" component={SignInForm}>
           </Route>
-          <Route path="/sign-in" component={SignInForm}>
+          <Route path="/signUp" component={SignUpForm}>
           </Route>
       </div>
 
     </div>
-  </Router>);
+  </BrowserRouter>);
     }
     }
 
