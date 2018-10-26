@@ -40,12 +40,12 @@ class NavBar extends React.Component {
 
         <ul className={Styles.rightUl}>
           <MenuItem>
-            <LinkContainer to={{ pathname: "/foo", query: { bar: "baz" } }}>
+            <LinkContainer to="/login">
               <span>Login</span>
             </LinkContainer>
           </MenuItem>
           <MenuItem>
-            <LinkContainer to={{ pathname: "/foo", query: { bar: "baz" } }}>
+            <LinkContainer to="login">
               <span>Register</span>
             </LinkContainer>
           </MenuItem>f
