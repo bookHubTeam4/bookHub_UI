@@ -34,8 +34,12 @@ class SearchLogin extends React.Component {
         </div>
 
         <div className={Style.recdiv}>
+        <h3>Recommendation</h3>
         <Panel >
-          <Panel.Body>Basic panel example</Panel.Body>
+          <Panel.Body>
+          <h4>Fiction</h4>
+          
+          </Panel.Body>
         </Panel>
         </div>
         
