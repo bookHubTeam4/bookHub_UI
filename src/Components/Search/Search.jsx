@@ -2,17 +2,10 @@ import React from "react";
 import { Glyphicon } from "react-bootstrap";
 import NavBar from "../../Components/NavBar/NavBar";
 import Pen from "../../img/quil.svg";
-import BookItem from "../../Components/BookItem/BookItem";
+import Books from "../HOC/BookLoading";
 import Style from "../Search/Search.css";
 
 const Search = props => {
-  var books = null;
-  if (props.books.length !== 0) {
-    var foo = props.books.splice(0, 4);
-    books = foo.map((e, index) => {
-      return <BookItem key={index} img={e.book_image} />;
-    });
-  }
   return (
     <div className={Style.pimg}>
       <NavBar />
@@ -21,22 +14,31 @@ const Search = props => {
         <img className={Style.spen} src={Pen} alt="pen" />
       </div>
       <div className={Style.ptext}>
-        <input
-          className={Style.searchText}
-          type="input"
-          onChange={e => {
-            props.text(e.target.value);
-          }}
-        />{" "}
-        <Glyphicon
-          style={{ color: "yellow" }}
-          glyph="glyphicon glyphicon-search"
-          onClick={e => {
+        <form
+          onSubmit={e => {
+            e.preventDefault();
             props.click();
           }}
-        />
+        >
+          <input
+            className={Style.searchText}
+            type="input"
+            onChange={e => {
+              props.text(e.target.value);
+            }}
+          />{" "}
+          <button className={Style.sbtn}>
+            <Glyphicon
+              style={{ color: "yellow" }}
+              glyph="glyphicon glyphicon-search"
+              onClick={e => {
+                props.click();
+              }}
+            />
+          </button>
+        </form>
       </div>
-      <div className={Style.books}>{books}</div>
+      <Books input={props.input} books={props.books} />
     </div>
   );
 };

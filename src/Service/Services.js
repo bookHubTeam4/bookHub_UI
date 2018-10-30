@@ -11,7 +11,7 @@ export const searchService = query => {
         if (response.ok) {
           resolve(response);
         } else {
-          reject(response.error());
+          reject(response);
         }
       })
       .catch(err => reject(err));
@@ -35,6 +35,7 @@ export const searchService = query => {
         .catch(err=>reject(err))
     });
   };
+  
   export const signUpService = (firstName, lastName, emailId, password) => {
     return new Promise((resolve, reject)=>{
         fetch(`https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&address&email=${emailId}&password=${password}`,

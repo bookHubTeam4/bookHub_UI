@@ -9,21 +9,30 @@ class SearchMain extends React.Component {
     super(props);
     this.state = {
       searchText: "",
+      sClick: false,
       books: []
     };
   }
 
   searchInput = data => {
     this.setState({ searchText: data });
+    if (data === "") {
+      this.setState({ books: [] });
+    }
   };
 
   onSearch = () => {
-    if (this.state.searchText.length > 0) {
-      searchService(this.state.searchText)
+    let search = Object.assign({}, this.state);
+    if (search.searchText.length > 0) {
+      this.setState({ sClick: true });
+      searchService(search.searchText)
         .then(e => e.json())
         .then(e => {
           console.log(e.books);
-          this.setState({ books: e.books });
+          this.setState({
+            books: e.books,
+            sClick: false
+          });
         });
     }
   };
@@ -37,6 +46,7 @@ class SearchMain extends React.Component {
           text={this.searchInput}
           click={this.onSearch}
           books={this.state.books}
+          input={this.state.searchText}
         />
       );
     } else {
@@ -45,6 +55,7 @@ class SearchMain extends React.Component {
           text={this.searchInput}
           click={this.onSearch}
           books={this.state.books}
+          input={this.state.sClick}
         />
       );
     }

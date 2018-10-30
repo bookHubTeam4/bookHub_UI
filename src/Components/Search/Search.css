@@ -86,3 +86,7 @@ input {
     width: 30%;
   }
 }
+
+.sbtn{
+  all:unset;
+}
