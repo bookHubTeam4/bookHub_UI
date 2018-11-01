@@ -31,9 +31,6 @@ const Search = props => {
             <Glyphicon
               style={{ color: "yellow" }}
               glyph="glyphicon glyphicon-search"
-              onClick={e => {
-                props.click();
-              }}
             />
           </button>
         </form>

@@ -1,6 +1,5 @@
 .ptext {
-  position: absolute;
-  top: 10%;
+  position: relative;
   width: 100%;
   text-align: center;
   color: #000;
@@ -24,8 +23,14 @@ input {
 }
 
 .recdiv {
-  position: absolute;
-  top: 40%;
   width: 100%;
-  padding: 30px;
+  padding: 40px;
+}
+
+.sbtn{
+  all:unset;
+}
+
+.bsp{
+  padding: 50px;
 }

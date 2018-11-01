@@ -43,15 +43,17 @@ class SearchMain extends React.Component {
     if (this.props.tokken) {
       user = (
         <SearchLogin
+          login={true}
           text={this.searchInput}
           click={this.onSearch}
           books={this.state.books}
-          input={this.state.searchText}
+          input={this.state.sClick}
         />
       );
     } else {
       user = (
         <Search
+          login={false}
           text={this.searchInput}
           click={this.onSearch}
           books={this.state.books}

@@ -58,6 +58,7 @@ input {
 }
 
 @media (max-width: 1800px) {
+
   .stext {
     position: absolute;
     top: 25%;
