@@ -16,7 +16,7 @@ class SearchLogin extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar login={true}/>
         <div
           style={{
             position:"absolute",

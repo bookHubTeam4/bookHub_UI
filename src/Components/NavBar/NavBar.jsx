@@ -61,7 +61,11 @@ class NavBar extends React.Component {
           }}
         >
           <i
-            style={{ color: "white", padding: "10px", float: "right" }}
+            style={
+              this.props.login
+                ? { color: "black", padding: "10px", float: "right" }
+                : { color: "white", padding: "10px", float: "right" }
+            }
             className="fas fa-bars fa-3x"
           />
         </button>

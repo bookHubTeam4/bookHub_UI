@@ -1,5 +1,5 @@
 const initialState = {
-    tokken: localStorage.getItem('tokken')
+    tokken: null//localStorage.getItem('tokken')
 }
 
 const Reducer = (state = initialState,action) =>{
