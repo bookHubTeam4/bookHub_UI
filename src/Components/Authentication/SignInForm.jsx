@@ -1,15 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Style from "../Authentication/Authentication.css";
 import { loginService } from "../../Service/Services";
 import { GoogleLogin } from "react-google-login";
 import  FacebookLogin  from "react-facebook-login";
+import {Row,Col} from 'react-bootstrap';
+import { Redirect} from 'react-router-dom'
 
 class SignInForm extends Component {
   constructor() {
     super();
 
     this.state = {
+      tokken:null,
       email: "",
       password: ""
     };
@@ -34,26 +38,36 @@ class SignInForm extends Component {
     e.preventDefault();
 
     loginService(this.state.email, this.state.password)
-      .then(e => e.json())
-      .then(e => console.table(e));
+      .then(e => e.json()).then(e => {
+       // console.log(e.user.authentication_token);
+        if (e.user.authentication_token) {
+          localStorage.setItem("tokken", e.user.authentication_token);
+          localStorage.setItem("name", e.user.firstName+" "+e.user.lastName);
+          this.props.onTokkenRecive(e.user.authentication_token);
+          this.props.onNameReceive(e.user.firstName+" "+e.user.lastName);
+
+          console.log(this.props.tokken);
+          <Redirect to='/'/>
+        }
+      });
   }
 
   responseGoogle(response) {
     console.log(response);
+    //loginService.GoogleLogin(response);
   }
 
   responseFacebook = response => {
     console.log(response);
+   // loginService.FacebookLogin(response);
   };
+
 
   render() {
     return (
+      
       <div className={Style.FormCenter}>
-        <form
-          onSubmit={this.handleSubmit}
-          className="form-group"
-          onSubmit={this.handleSubmit}
-        >
+        <form onSubmit={this.handleSubmit} className="form-group">
           <div className={Style.FormField}>
             <input
               type="email"
@@ -85,7 +99,8 @@ class SignInForm extends Component {
             </Link>
           </div>
         </form>
-        <div className="row">
+        <Row>
+        <Col md={12}>
         <GoogleLogin 
           clientId="867945999343-gr16hdcap7et6keb5qf8lderkurtri27.apps.googleusercontent.com"
           onSuccess={this.responseGoogle}
@@ -95,19 +110,41 @@ class SignInForm extends Component {
             style={{ color: "white" }}
             className="fab fa-google"
           />
+          <span> Login with Google</span>
         </GoogleLogin>
+        </Col>
+        </Row>
+        
+        <Row>
+     
+        <Col md={12}>
         <FacebookLogin 
           appId="2187369724923695"
-          autoLoad
+          autoLoad={false}
           callback={this.responseFacebook}
-          render={renderProps => (
-            <button onClick={renderProps.onClick}>This is my custom FB button</button>
-          )}
+          icon="fa-facebook"   
         />
-        </div>
-      </div>
+        </Col>
+        </Row>
+         </div>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    tokken: state.tokken,
+    name: state.name
+  };
+};
 
-export default SignInForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: tokken }),
+    onNameReceive:name => dispatch({type:"NAME",payLoad: name})
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInForm);

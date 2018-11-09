@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Modal, MenuItem } from "react-bootstrap";
 import Styles from "../NavBar/NavBar.css";
@@ -7,11 +8,20 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      navTokken:this.props.tokken,
       show: false,
       height: ""
     };
+    
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
+  handleLogout() {
+    this.props.onTokkenRecive(null);
+    this.props.onNameReceive(null);
+    localStorage.setItem("tokken", null);
+    localStorage.setItem("name", null);
+  }
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -22,6 +32,39 @@ class NavBar extends React.Component {
   };
 
   render() {
+    console.log("navbar");
+    console.log(this.props.tokken);
+    console.log(this.props.name);
+    let navName = null;
+    if (this.props.tokken !== "null") {
+      navName = (
+        <React.Fragment>
+          <MenuItem>
+            <span>{this.props.name}</span>
+          </MenuItem>
+          <button className="btn btn-link" onClick={this.handleLogout}>
+            <span>Logout</span>
+          </button>
+        </React.Fragment>
+      );
+    } else {
+      navName = (
+        <React.Fragment>
+          <MenuItem>
+            <LinkContainer to={{ pathname: "/login", query: { bar: "baz" } }}>
+              <span>Login</span>
+            </LinkContainer>
+          </MenuItem>
+
+          <MenuItem>
+            <LinkContainer to={{ pathname: "/signup", query: { bar: "baz" } }}>
+              <span>Register</span>
+            </LinkContainer>
+          </MenuItem>
+        </React.Fragment>
+      );
+    }
+
     var navbar = (
       <React.Fragment>
         <ul className={Styles.leftUl}>
@@ -39,19 +82,11 @@ class NavBar extends React.Component {
         </ul>
 
         <ul className={Styles.rightUl}>
-          <MenuItem>
-            <LinkContainer to="/login">
-              <span>Login</span>
-            </LinkContainer>
-          </MenuItem>
-          <MenuItem>
-            <LinkContainer to="/signUp">
-              <span>Register</span>
-            </LinkContainer>
-          </MenuItem>f
+          <React.Fragment>{navName}</React.Fragment>
         </ul>
       </React.Fragment>
     );
+
     if (this.state.height < 600) {
       navbar = (
         <button
@@ -88,22 +123,7 @@ class NavBar extends React.Component {
                     <span>BookHub</span>
                   </LinkContainer>
                 </MenuItem>
-
-                <MenuItem>
-                  <LinkContainer
-                    to={{ pathname: "/foo", query: { bar: "baz" } }}
-                  >
-                    <span>Login</span>
-                  </LinkContainer>
-                </MenuItem>
-
-                <MenuItem>
-                  <LinkContainer
-                    to={{ pathname: "/foo", query: { bar: "baz" } }}
-                  >
-                    <span>Register</span>
-                  </LinkContainer>
-                </MenuItem>
+                {navName}
               </ul>
             </Modal.Body>
           </Modal>
@@ -112,4 +132,22 @@ class NavBar extends React.Component {
     );
   }
 }
-export default NavBar;
+//export default NavBar;
+const mapStateToProps = state => {
+  return ({
+    tokken: state.tokken,
+    name: state.name
+  });
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: null }),
+    onNameReceive: name => dispatch({ type: "NAME", payLoad: null })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar);
