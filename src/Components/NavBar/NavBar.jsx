@@ -48,7 +48,7 @@ class NavBar extends React.Component {
             <LinkContainer to="login">
               <span>Register</span>
             </LinkContainer>
-          </MenuItem>f
+          </MenuItem>
         </ul>
       </React.Fragment>
     );
@@ -57,12 +57,15 @@ class NavBar extends React.Component {
         <button
           className={Styles.navBtn}
           onClick={e => {
-            console.log("elvis");
             this.setState({ show: true });
           }}
         >
           <i
-            style={{ color: "white", padding: "10px", float: "right" }}
+            style={
+              this.props.login
+                ? { color: "black", padding: "10px", float: "right" }
+                : { color: "white", padding: "10px", float: "right" }
+            }
             className="fas fa-bars fa-3x"
           />
         </button>
