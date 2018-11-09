@@ -38,6 +38,44 @@ export const loginService = (email, password) => {
   });
 };
 
+  export const googleSignInService = (response) => {
+    return new Promise((resolve, reject)=>{
+        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?response=${response}`,
+        {
+          method: "POST",
+          mode: "cors"
+        }).then(response=>{
+            //console.log(resp);
+            if(response.ok){
+                console.log(response.ok)
+                resolve(response)
+            } else{
+                reject(response.error())
+            }
+        })
+        .catch(err=>reject(err))
+    });
+  };
+
+  export const facebookSignInService = (response) => {
+    return new Promise((resolve, reject)=>{
+        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?response=${response}`,
+        {
+          method: "POST",
+          mode: "cors"
+        }).then(response=>{
+            //console.log(resp);
+            if(response.ok){
+                console.log(response.ok)
+                resolve(response)
+            } else{
+                reject(response.error())
+            }
+        })
+        .catch(err=>reject(err))
+    });
+  };
+
 export const signUpService = (firstName, lastName, emailId, password) => {
   return new Promise((resolve, reject) => {
     fetch(

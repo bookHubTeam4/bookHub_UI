@@ -3,6 +3,7 @@ import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
 import Style from "../Authentication/Authentication.css";
+import NavBar from "../../Components/NavBar/NavBar";
 export class Authentication extends Component {
   state = {
     count: 1
@@ -14,8 +15,10 @@ export class Authentication extends Component {
 
   render() {
     return (
+   
       <BrowserRouter>
         <div className={Style.login_bg}>
+        <NavBar/>
           <div className={Style.login__Form}>
             <div className={Style.FormTitle}>
               <NavLink
