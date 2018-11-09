@@ -58,6 +58,7 @@ input {
 }
 
 @media (max-width: 1800px) {
+
   .stext {
     position: absolute;
     top: 25%;
@@ -85,4 +86,8 @@ input {
     opacity: 0.9;
     width: 30%;
   }
+}
+
+.sbtn{
+  all:unset;
 }
