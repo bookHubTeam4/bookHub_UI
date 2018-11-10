@@ -6,14 +6,14 @@ import { loginService } from "../../Service/Services";
 import { GoogleLogin } from "react-google-login";
 import  FacebookLogin  from "react-facebook-login";
 import {Row,Col} from 'react-bootstrap';
-import { Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 class SignInForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      tokken:null,
+      tokken:"",
       email: "",
       password: ""
     };
@@ -39,15 +39,13 @@ class SignInForm extends Component {
 
     loginService(this.state.email, this.state.password)
       .then(e => e.json()).then(e => {
-       // console.log(e.user.authentication_token);
         if (e.user.authentication_token) {
-          localStorage.setItem("tokken", e.user.authentication_token);
-          localStorage.setItem("name", e.user.firstName+" "+e.user.lastName);
           this.props.onTokkenRecive(e.user.authentication_token);
           this.props.onNameReceive(e.user.firstName+" "+e.user.lastName);
-
+          localStorage.setItem("tokken", e.user.authentication_token);
+          localStorage.setItem("name", e.user.firstName+" "+e.user.lastName);
           console.log(this.props.tokken);
-          <Redirect to='/'/>
+          this.props.history.push("/");
         }
       });
   }
@@ -144,7 +142,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignInForm);
+)(SignInForm));

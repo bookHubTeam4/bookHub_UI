@@ -45,9 +45,7 @@ export const loginService = (email, password) => {
           method: "POST",
           mode: "cors"
         }).then(response=>{
-            //console.log(resp);
             if(response.ok){
-                console.log(response.ok)
                 resolve(response)
             } else{
                 reject(response.error())
@@ -64,9 +62,7 @@ export const loginService = (email, password) => {
           method: "POST",
           mode: "cors"
         }).then(response=>{
-            //console.log(resp);
             if(response.ok){
-                console.log(response.ok)
                 resolve(response)
             } else{
                 reject(response.error())
@@ -87,7 +83,6 @@ export const signUpService = (firstName, lastName, emailId, password) => {
     )
       .then(response => {
         if (response.ok) {
-          console.log(response.ok);
           resolve(response);
         } else {
           reject(response.error());
