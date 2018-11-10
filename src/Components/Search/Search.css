@@ -11,9 +11,9 @@
 
 .stext {
   position: absolute;
-  top: 35%;
+  top: 20%;
   width: 100%;
-  font-family: 'Niconne', cursive;
+  font-family: "Niconne", cursive;
   text-align: center;
   color: #fbedb1;
   font-size: 70px;
@@ -21,16 +21,14 @@
   letter-spacing: 2px;
 }
 
-
-
-.spen{
-  height:80px;
+.spen {
+  height: 80px;
   margin-bottom: 55px;
 }
 
 .ptext {
   position: absolute;
-  top: 60%;
+  top: 40%;
   width: 100%;
   text-align: center;
   color: #000;
@@ -39,13 +37,57 @@
   text-transform: uppercase;
 }
 
+.books {
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  width: 100%;
+}
+
 input {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
+  outline: none;
+  text-indent: 20px;
 }
 
 .searchText {
   opacity: 0.9;
   width: 40%;
+}
+
+@media (max-width: 1800px) {
+
+  .stext {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    font-family: "Niconne", cursive;
+    text-align: center;
+    color: #fbedb1;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  .ptext {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+  }
+
+  .searchText {
+    opacity: 0.9;
+    width: 30%;
+  }
+}
+
+.sbtn{
+  all:unset;
 }

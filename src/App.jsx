@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import SearchMain from "../src/Containers/SearchMain/SearchMain";
 
-import PawanFirstPage from "./Components/BookInformation/PawanFirstPage";
 import BookInfo from "./Components/BookInformation/BookInfo";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 
 
+import Authentication from '../src/Components/Authentication/Authentication';
 
 // import Styles from "./App.css";
 
@@ -15,8 +15,13 @@ class App extends Component {
       <BrowserRouter>
       <Switch>
         <Route path="/" exact component={SearchMain} />
-        <Route path="/p" exact component={PawanFirstPage} /> /bookInfo
+
+
         <Route path="/bookInfo/:number" exact component={BookInfo} /> 
+
+        <Route path="/login" exact component={Authentication} />
+        <Route path="/SignUp" exact component={Authentication} />
+
         </Switch>
       </BrowserRouter>
     );

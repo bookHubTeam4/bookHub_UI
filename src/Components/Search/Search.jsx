@@ -2,6 +2,7 @@ import React from "react";
 import { Glyphicon } from "react-bootstrap";
 import NavBar from "../../Components/NavBar/NavBar";
 import Pen from "../../img/quil.svg";
+import Books from "../HOC/BookLoading";
 import Style from "../Search/Search.css";
 
 const Search = props => {
@@ -13,21 +14,28 @@ const Search = props => {
         <img className={Style.spen} src={Pen} alt="pen" />
       </div>
       <div className={Style.ptext}>
-        <input
-          className={Style.searchText}
-          type="input"
-          onChange={e => {
-            props.text(e.target.value);
-          }}
-        />{" "}
-        <Glyphicon
-          style={{ color: "yellow" }}
-          glyph="glyphicon glyphicon-search"
-          onClick={e => {
+        <form
+          onSubmit={e => {
+            e.preventDefault();
             props.click();
           }}
-        />
+        >
+          <input
+            className={Style.searchText}
+            type="input"
+            onChange={e => {
+              props.text(e.target.value);
+            }}
+          />{" "}
+          <button className={Style.sbtn}>
+            <Glyphicon
+              style={{ color: "yellow" }}
+              glyph="glyphicon glyphicon-search"
+            />
+          </button>
+        </form>
       </div>
+      <Books input={props.input} books={props.books} />
     </div>
   );
 };
