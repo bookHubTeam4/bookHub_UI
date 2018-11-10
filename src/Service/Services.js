@@ -38,6 +38,30 @@ export const loginService = (email, password) => {
   });
 };
 
+
+
+
+export const BookInfoService = isbn => {
+    return new Promise((resolve, reject) => {
+
+        console.log("calling with " + isbn);
+        fetch(`https://bookhub-api.herokuapp.com/api/version1/books/${isbn}`,
+            {
+                method: "GET",
+                mode: "cors"
+            }).then(response => {
+                if (response.ok) {
+                    resolve(response)
+                } else {
+                    reject(response.error)
+                }
+            })
+            .catch(err => reject(err))
+
+
+    });
+};
+
   export const googleSignInService = (response) => {
     return new Promise((resolve, reject)=>{
         fetch(`https://bookhub-api.herokuapp.com/api/version1/users?response=${response}`,
@@ -91,3 +115,4 @@ export const signUpService = (firstName, lastName, emailId, password) => {
       .catch(err => reject(err));
   });
 };
+
