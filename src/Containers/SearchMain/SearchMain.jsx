@@ -14,6 +14,10 @@ class SearchMain extends React.Component {
     };
   }
 
+  userLogout = () =>{
+    
+  }
+
   searchInput = data => {
     this.setState({ searchText: data });
     if (data === "") {
@@ -40,7 +44,8 @@ class SearchMain extends React.Component {
   render() {
     var user = null;
     console.log(this.props.tokken);
-    if (this.props.tokken) {
+    if (this.props.tokken !== "") {
+      console.log("hellooo");
       user = (
         <SearchLogin
           login={true}
@@ -48,6 +53,7 @@ class SearchMain extends React.Component {
           click={this.onSearch}
           books={this.state.books}
           input={this.state.sClick}
+
         />
       );
     } else {

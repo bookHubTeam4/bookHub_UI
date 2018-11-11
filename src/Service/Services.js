@@ -38,6 +38,28 @@ export const loginService = (email, password) => {
   });
 };
 
+export const BookInfoService = isbn => {
+    return new Promise((resolve, reject) => {
+
+        console.log("calling with " + isbn);
+        fetch(`https://bookhub-api.herokuapp.com/api/version1/books/${isbn}`,
+            {
+                method: "GET",
+                mode: "cors"
+            }).then(response => {
+                if (response.ok) {
+                    resolve(response)
+                } else {
+                    reject(response.error)
+                }
+            })
+            .catch(err => reject(err))
+
+
+    });
+};
+
+
   export const SignInService = (firstName, lastName, emailId, provider) => {
     return new Promise((resolve, reject)=>{
         fetch(`http://bookhub-api.herokuapp.com/api/version1/auth/request?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
@@ -46,7 +68,6 @@ export const loginService = (email, password) => {
           mode: "cors"
         }).then(response=>{
             if(response.ok){
-                console.log(response.ok)
                 resolve(response)
             } else{
                 reject(response.error())
@@ -55,6 +76,7 @@ export const loginService = (email, password) => {
         .catch(err=>reject(err))
     });
   };
+
 
 
 export const signUpService = (firstName, lastName, emailId, password) => {
@@ -68,7 +90,6 @@ export const signUpService = (firstName, lastName, emailId, password) => {
     )
       .then(response => {
         if (response.ok) {
-          console.log(response.ok);
           resolve(response);
         } else {
           reject(response.error());
@@ -77,3 +98,4 @@ export const signUpService = (firstName, lastName, emailId, password) => {
       .catch(err => reject(err));
   });
 };
+

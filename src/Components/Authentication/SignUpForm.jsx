@@ -52,10 +52,10 @@ class SignUpForm extends Component {
     )
       .then(e => e.json())
       .then(e => {
-        console.log(e.authentication_token);
-        if (e.authentication_token) {
-          localStorage.setItem("tokken", e.authentication_token);
-          this.props.onTokkenRecive(e.authentication_token);
+        console.log(e.user.authentication_token);
+        if (e.user.authentication_token) {
+          localStorage.setItem("tokken", e.user.authentication_token);
+          this.props.onTokkenRecive(e.user.authentication_token);
         }
       });
   }
