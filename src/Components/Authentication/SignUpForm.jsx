@@ -1,22 +1,32 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import Style from "../Authentication/Authentication.css";
 import { signUpService } from "../../Service/Services";
-
+import NavBar from "../../Components/NavBar/NavBar";
+import Modal from "../Modals/Modal";
 class SignUpForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
       password: "",
       fname: "",
-      lname: ""
+      lname: "",
+      isOpen:false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  toggleModal = () => {
+    console.log("Open Modal Clicked");
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+    console.log(this.state.isOpen);
   }
 
   handleChange(e) {
@@ -52,6 +62,30 @@ class SignUpForm extends Component {
 
   render() {
     return (
+      <div className={Style.login_bg}>
+      <NavBar/>
+      <button onClick={this.toggleModal}>
+          Open the modal
+        </button>
+        <Modal show={this.state.isOpen} onClose={this.toggleModal}/>
+        <div className={Style.login__Form}>
+          <div>
+            <NavLink
+              to="/login"
+              activeClassName={Style.FormTitle__Link}
+              className={Style.FormTitle__Link}
+            >
+              Sign In
+            </NavLink>{" "}
+           or {" "}
+            <NavLink
+              to="/signUp"
+              activeClassName={Style.FormTitle__Link}
+              className={Style.FormTitle__Link}
+            >
+              Sign Up
+            </NavLink>
+          </div>
       <div className="FormCenter">
         <form onSubmit={this.handleSubmit} className="form-group">
           <div className={Style.FormField}>
@@ -94,13 +128,6 @@ class SignUpForm extends Component {
               onChange={this.handleChange}
             />
           </div>
-
-          {/* <div className="FormField">
-                <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-                </label>
-              </div> */}
-
           <div className={Style.FormField}>
             <button className="btn btn-primary">Sign Up</button>{" "}
             <Link to="/login" className="FormField__Link">
@@ -108,6 +135,9 @@ class SignUpForm extends Component {
             </Link>
           </div>
         </form>
+      </div>
+      </div>
+ 
       </div>
     );
   }
