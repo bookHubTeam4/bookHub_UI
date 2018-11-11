@@ -38,9 +38,6 @@ export const loginService = (email, password) => {
   });
 };
 
-
-
-
 export const BookInfoService = isbn => {
     return new Promise((resolve, reject) => {
 
@@ -62,16 +59,15 @@ export const BookInfoService = isbn => {
     });
 };
 
-  export const googleSignInService = (response) => {
+
+  export const SignInService = (firstName, lastName, emailId, provider) => {
     return new Promise((resolve, reject)=>{
-        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?response=${response}`,
+        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
         {
           method: "POST",
           mode: "cors"
         }).then(response=>{
-            //console.log(resp);
             if(response.ok){
-                console.log(response.ok)
                 resolve(response)
             } else{
                 reject(response.error())
@@ -81,24 +77,7 @@ export const BookInfoService = isbn => {
     });
   };
 
-  export const facebookSignInService = (response) => {
-    return new Promise((resolve, reject)=>{
-        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?response=${response}`,
-        {
-          method: "POST",
-          mode: "cors"
-        }).then(response=>{
-            //console.log(resp);
-            if(response.ok){
-                console.log(response.ok)
-                resolve(response)
-            } else{
-                reject(response.error())
-            }
-        })
-        .catch(err=>reject(err))
-    });
-  };
+
 
 export const signUpService = (firstName, lastName, emailId, password) => {
   return new Promise((resolve, reject) => {
@@ -111,7 +90,6 @@ export const signUpService = (firstName, lastName, emailId, password) => {
     )
       .then(response => {
         if (response.ok) {
-          console.log(response.ok);
           resolve(response);
         } else {
           reject(response.error());
