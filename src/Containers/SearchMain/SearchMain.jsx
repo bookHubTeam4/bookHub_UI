@@ -40,7 +40,8 @@ class SearchMain extends React.Component {
   render() {
     var user = null;
     console.log(this.props.tokken);
-    if (this.props.tokken) {
+    if (this.props.tokken !== "") {
+      console.log("hellooo");
       user = (
         <SearchLogin
           login={true}
