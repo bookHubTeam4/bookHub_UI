@@ -40,7 +40,7 @@ export const loginService = (email, password) => {
 
   export const SignInService = (firstName, lastName, emailId, provider) => {
     return new Promise((resolve, reject)=>{
-        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
+        fetch(`http://bookhub-api.herokuapp.com/api/version1/auth/request?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
         {
           method: "POST",
           mode: "cors"

@@ -3,6 +3,7 @@ import SearchMain from "../src/Containers/SearchMain/SearchMain";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignUpForm from "./Components/Authentication/SignUpForm";
 import SignInForm from "./Components/Authentication/SignInForm";
+// import modal from "./Components/Modals/Modal";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <Route path="/" exact component={SearchMain} />
         <Route path="/login" exact component={SignInForm} />
         <Route path="/SignUp" exact component={SignUpForm} />
+       
       </Switch>
       </BrowserRouter>
     );

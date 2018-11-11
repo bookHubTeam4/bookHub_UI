@@ -1,54 +1,62 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// import React, { Component } from 'react';
 
-class Modal extends React.Component {
-  render() {
-    // Render nothing if the "show" prop is false
-    if(!this.props.show) {
-      return null;
-    }
+// class Modal extends React.Component {
+//   constructor(props, context) {
+//     super(props, context);
 
-    // The gray background
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 50
-    };
+//     this.handleShow = this.handleShow.bind(this);
+//     this.handleClose = this.handleClose.bind(this);
 
-    // The modal "window"
-    const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30
-    };
+//     this.state = {
+//       show: false
+//     };
+//   }
 
-    return (
-      <div className="backdrop" style={{backdropStyle}}>
-        <div className="modal" style={{modalStyle}}>
-          {this.props.children}
+//   handleClose() {
+//     this.setState({ show: false });
+//   }
 
-          <div className="footer">
-            <button onClick={this.props.onClose}>
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+//   handleShow() {
+//     this.setState({ show: true });
+//   }
 
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  show: PropTypes.bool,
-  children: PropTypes.node
-};
+//   render() {
 
-export default Modal;
+//     return (
+//       <div>
+//         <p>Click to get the full Modal experience!</p>
+
+//         <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+//           Launch demo modal
+//         </Button>
+
+//         <Modal show={this.state.show} onHide={this.handleClose}>
+//           <Modal.Header closeButton>
+//             <Modal.Title>Modal heading</Modal.Title>
+//           </Modal.Header>
+//           <Modal.Body>
+//             <h4>Text in a modal</h4>
+//             <p>
+//               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+//             </p>
+
+//             <hr />
+
+//             <h4>Overflowing text to show scroll behavior</h4>
+//             <p>
+//               Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+//               dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+//               ac consectetur ac, vestibulum at eros.
+//             </p>
+            
+//           </Modal.Body>
+//           <Modal.Footer>
+//             <Button onClick={this.handleClose}>Close</Button>
+//           </Modal.Footer>
+//         </Modal>
+//       </div>
+//     );
+//   }
+// }
+
+// render(<Modal />);
