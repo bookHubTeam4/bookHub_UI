@@ -8,19 +8,18 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navTokken:this.props.tokken,
       show: false,
       height: ""
     };
-    
+
     this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogout() {
-    this.props.onTokkenRecive(null);
-    this.props.onNameReceive(null);
-    localStorage.setItem("tokken", null);
-    localStorage.setItem("name", null);
+    this.props.onTokkenRecive();
+    this.props.onNameReceive();
+    localStorage.setItem("tokken","");
+    localStorage.setItem("name", "");
   }
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
@@ -33,10 +32,9 @@ class NavBar extends React.Component {
 
   render() {
     console.log("navbar");
-    console.log(this.props.tokken);
-    console.log(this.props.name);
+    console.log(this.props)
     let navName = null;
-    if (this.props.tokken !== "null") {
+    if (this.props.tokken !== "") {
       navName = (
         <React.Fragment>
           <MenuItem>
@@ -75,7 +73,7 @@ class NavBar extends React.Component {
           </MenuItem>
 
           <MenuItem>
-            <LinkContainer to={{ pathname: "/foo", query: { bar: "baz" } }}>
+            <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
               <span>BookHub</span>
             </LinkContainer>
           </MenuItem>
@@ -135,18 +133,18 @@ class NavBar extends React.Component {
     );
   }
 }
-//export default NavBar;
+
 const mapStateToProps = state => {
-  return ({
+  return {
     tokken: state.tokken,
     name: state.name
-  });
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: null }),
-    onNameReceive: name => dispatch({ type: "NAME", payLoad: null })
+    onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: "" }),
+    onNameReceive: name => dispatch({ type: "NAME", payLoad:  ""})
   };
 };
 
