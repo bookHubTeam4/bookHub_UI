@@ -15,13 +15,9 @@ class App extends Component {
       <BrowserRouter>
       <Switch>
         <Route path="/" exact component={SearchMain} />
-
-
         <Route path="/bookInfo/:number" exact component={BookInfo} /> 
-
         <Route path="/login" exact component={Authentication} />
         <Route path="/SignUp" exact component={Authentication} />
-
         </Switch>
       </BrowserRouter>
     );
