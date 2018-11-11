@@ -13,10 +13,14 @@ class SearchLogin extends React.Component {
     };
   }
 
+  logouthandle = () => {
+    console.log("logout::::::::::::::::::::")
+  }
+
   render() {
     return (
       <React.Fragment>
-        <NavBar login={true}/>
+        <NavBar login={true} logout = {this.logouthandle}/>
         <div
           style={{
             position:"absolute",
