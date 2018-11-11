@@ -1,26 +1,71 @@
 import React, { Component } from "react";
 import { BookInfoService } from "../../Service/Services";
+import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
 import { Container, Row, Col, Jumbotron, Badge, Button } from "reactstrap";
 
-export default class BookInfo extends Component {
+import {Redirect } from "react-router-dom";
+
+class BookInfo extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      flag: false
+      flag: false,
+      LoggedInFlag: false,
+      buttonClicked: false
     };
+   
+    this.check=this.check.bind(this);
+    
   }
 
+  check()
+  {
+    
+     // this.state.buttonClicked = true  ;
+   
+   // if(this.props.tokken)
+   console.log("this is **********token "+this.props.tokken);
+   if(this.props.tokken === "")
+   {
+    console.log("entering if statem");
+    this.setState({ 
+     
+      buttonClicked : true
+    });
+
+   }
+   else{
+    console.log("entering else statem");
+    this.setState({ 
+      LoggedInFlag : true,
+      buttonClicked : true
+    });
+
+  
+
+   }
+
+  }
   componentDidMount() {
     BookInfoService(this.props.match.params.number)
       .then(e => e.json())
       .then(e => {
         this.setState({ items: e, flag: true });
       });
+      console.log(this.props.tokken);
   }
 
   render() {
+         
+    if (this.state.LoggedInFlag === false && this.state.buttonClicked === true) {
+        
+      return <Redirect to= '/login' /> }
+
+
+
     if (this.state.flag) {
       return (
         <div className={Style.pimg}>
@@ -38,7 +83,7 @@ export default class BookInfo extends Component {
 
           <Jumbotron>
             <div className="row">
-              <div className="col-md-2">
+              <div className="col-md-4">
                 <img
                   width="300"
                   height="400"
@@ -47,7 +92,7 @@ export default class BookInfo extends Component {
                 />
               </div>
 
-              <div className="col-md-10">
+              <div className="col-md-4">
                 <h4> {this.state.items.book.description}</h4>
               </div>
             </div>
@@ -60,9 +105,9 @@ export default class BookInfo extends Component {
               </div>{" "}
             </div>
             <div align="center">
-              <Button color="primary">Add To Reading List</Button>{" "}
-              <Button color="success">Finished Reading</Button>{" "}
-              <Button color="danger">Can't Buy?</Button>{" "}
+              <Button color="primary" onClick={this.check} >Add To Reading List</Button>{" "}
+              <Button color="success" onClick={this.check} >Finished Reading</Button>{" "}
+              <Button color="danger" onClick={this.check}  >Can't Buy?</Button>{" "}
             </div>
           </Jumbotron>
         </div>
@@ -72,3 +117,20 @@ export default class BookInfo extends Component {
     return <div>Loading...</div>;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    tokken: state.tokken,
+    name: state.name
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: tokken }),
+    onNameReceive:name => dispatch({type:"NAME",payLoad: name})
+  };
+};
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(BookInfo);
