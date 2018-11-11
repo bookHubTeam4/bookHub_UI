@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SearchMain from "../src/Containers/SearchMain/SearchMain";
 import BookInfo from "./Components/BookInformation/BookInfo";
-import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignUpForm from "./Components/Authentication/SignUpForm";
 import SignInForm from "./Components/Authentication/SignInForm";
