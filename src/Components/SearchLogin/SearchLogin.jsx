@@ -4,7 +4,7 @@ import { Panel } from "react-bootstrap";
 import NavBar from "../NavBar/NavBar";
 import Style from "./SearchLogin.css";
 import Books from "../HOC/BookLoading";
-
+import Recommendation from '../Recommendation/Recommendation';
 class SearchLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ class SearchLogin extends React.Component {
   }
 
   logouthandle = () => {
-    console.log("logout::::::::::::::::::::")
+    this.props.logout();
   }
 
   render() {
@@ -58,11 +58,7 @@ class SearchLogin extends React.Component {
 
           <div className={Style.recdiv}>
             <h3>Recommendation</h3>
-            <Panel>
-              <Panel.Body>
-                <h4>Fiction</h4>
-              </Panel.Body>
-            </Panel>
+           <Recommendation />
           </div>
         </div>
       </React.Fragment>

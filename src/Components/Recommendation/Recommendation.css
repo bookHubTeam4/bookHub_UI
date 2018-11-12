@@ -1,0 +1,7 @@
+.slick-arrow {
+    background-color:black;
+    /* color: black; */
+  }
+  .slick-arrow:hover {
+    background-color: grey;
+  }
