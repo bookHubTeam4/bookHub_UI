@@ -1,17 +1,4 @@
-.pimg {
-    /* opacity:0.90; */
-    overflow-x: hidden;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-image: url("https://thethesiswhisperer.files.wordpress.com/2018/09/screen-shot-2018-07-22-at-11-20-36-am.png");
-    min-height: 100vh;
-  }
-
-
-  .loader {
-
+.loader {
     color: #000000;
     font-size: 90px;
     text-indent: -9999em;
