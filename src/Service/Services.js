@@ -56,10 +56,28 @@ export const BookInfoService = isbn => {
   });
 };
 
-export const SignInService = (firstName, lastName, emailId, provider) => {
+ export const SignInService = (firstName, lastName, emailId, provider) => {
+    return new Promise((resolve, reject)=>{
+        fetch(`http://bookhub-api.herokuapp.com/api/version1/auth/request?firstName=${firstName}&lastName=${lastName}&emailId=${emailId}&password=&provider=${provider}`,
+        {
+          method: "POST",
+          mode: "cors"
+        }).then(response=>{
+            if(response.ok){
+                resolve(response)
+            } else{
+                reject(response.error())
+            }
+        })
+        .catch(err=>reject(err))
+    });
+  };
+
+
+export const signUpService = (firstName, lastName, emailId, password) => {
   return new Promise((resolve, reject) => {
     fetch(
-      `https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
+      `https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&address&email=${emailId}&password=${password}`,
       {
         method: "POST",
         mode: "cors"
@@ -76,10 +94,11 @@ export const SignInService = (firstName, lastName, emailId, provider) => {
   });
 };
 
-export const signUpService = (firstName, lastName, emailId, password) => {
+export const favouriteGenre = (token, list) => {
   return new Promise((resolve, reject) => {
+    console.log(list);
     fetch(
-      `https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&address&email=${emailId}&password=${password}`,
+       `http://bookhub-api.herokuapp.com/api/version1/genre/add_user_genres?auth_token=${token}&genres=${JSON.stringify(list)  }`,
       {
         method: "POST",
         mode: "cors"
@@ -112,3 +131,4 @@ export const getRecommendation = tokken => {
       .catch(err => reject(err));
   });
 };
+
