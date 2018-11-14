@@ -69,6 +69,6 @@ export default class BookInfo extends Component {
       );
     }
 
-    return <div>Loading...</div>;
+    return <div className={Style.loader}>Loading...</div>;
   }
 }

@@ -1,21 +1,23 @@
 import React from "react";
 import Slider from "react-slick";
-import "../../../node_modules/slick-carousel/slick/slick.css"; 
-import "../../../node_modules/slick-carousel/slick/slick-theme.css";
-import Styles from "./Recommendation.css";
-import { Panel,Glyphicon } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
+import { Panel } from "react-bootstrap";
+import Styles from './Recommendation.css';
 
+const Recommendation = (props) => {
+    const isEmpty = books =>
+      books === null ||
+      books === undefined ||
+      (books.hasOwnProperty("length") && books.length === 0) ||
+      (books.constructor === Object && Object.keys(books).length === 0);
 
-
-class Recommendation extends React.Component {
-  render() {
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      arrows:true,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      arrows: true,
       responsive: [
         {
           breakpoint: 1024,
@@ -43,41 +45,32 @@ class Recommendation extends React.Component {
         }
       ]
     };
+
+    let arraybook = [];
+    if (!isEmpty(props.books)) {
+      arraybook = props.books.map((e, i) => {
+        return (
+          <Link to={`/bookInfo/${e.isbn}`}>
+            <img
+              className={Styles.recpic}
+              src={e.image_url}
+              alt="book"
+            />
+          </Link>
+        );
+      });
+    }
+
     return (
-      <Panel>
-        <Panel.Heading>Panel heading without a title</Panel.Heading>
+      <Panel bsStyle="info">
+        <Panel.Heading><h3>{props.genre}</h3></Panel.Heading>
         <Panel.Body>
-          <Slider {...settings}>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-            <div>
-              <img src="http://placekitten.com/g/400/200" alt="book" />
-            </div>
-          </Slider>
+          <Slider {...settings}>{arraybook}</Slider>
           <br />
         </Panel.Body>
       </Panel>
     );
-  }
 }
 
-export default Recommendation;
+
+export default withRouter(Recommendation);

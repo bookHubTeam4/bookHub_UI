@@ -39,45 +39,42 @@ export const loginService = (email, password) => {
 };
 
 export const BookInfoService = isbn => {
-    return new Promise((resolve, reject) => {
-
-        console.log("calling with " + isbn);
-        fetch(`https://bookhub-api.herokuapp.com/api/version1/books/${isbn}`,
-            {
-                method: "GET",
-                mode: "cors"
-            }).then(response => {
-                if (response.ok) {
-                    resolve(response)
-                } else {
-                    reject(response.error)
-                }
-            })
-            .catch(err => reject(err))
-
-
-    });
+  return new Promise((resolve, reject) => {
+    console.log("calling with " + isbn);
+    fetch(`https://bookhub-api.herokuapp.com/api/version1/books/${isbn}`, {
+      method: "GET",
+      mode: "cors"
+    })
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        } else {
+          reject(response.error);
+        }
+      })
+      .catch(err => reject(err));
+  });
 };
 
-
-  export const SignInService = (firstName, lastName, emailId, provider) => {
-    return new Promise((resolve, reject)=>{
-        fetch(`https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
-        {
-          method: "POST",
-          mode: "cors"
-        }).then(response=>{
-            if(response.ok){
-                resolve(response)
-            } else{
-                reject(response.error())
-            }
-        })
-        .catch(err=>reject(err))
-    });
-  };
-
-
+export const SignInService = (firstName, lastName, emailId, provider) => {
+  return new Promise((resolve, reject) => {
+    fetch(
+      `https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&email=${emailId}&provider=${provider}`,
+      {
+        method: "POST",
+        mode: "cors"
+      }
+    )
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        } else {
+          reject(response.error());
+        }
+      })
+      .catch(err => reject(err));
+  });
+};
 
 export const signUpService = (firstName, lastName, emailId, password) => {
   return new Promise((resolve, reject) => {
@@ -99,3 +96,19 @@ export const signUpService = (firstName, lastName, emailId, password) => {
   });
 };
 
+export const getRecommendation = tokken => {
+  return new Promise((resolve, reject) => {
+    fetch(`https://bookhub-api.herokuapp.com/api/version1/book/recomendation/?authentication_token=${tokken}`, {
+      method: "POST",
+      mode: "cors"
+    })
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        } else {
+          reject(response.error());
+        }
+      })
+      .catch(err => reject(err));
+  });
+};
