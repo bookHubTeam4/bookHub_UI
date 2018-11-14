@@ -5,6 +5,8 @@ import Reducer from './Store/Reducer'
 import './index.css';
 import {Provider} from 'react-redux';
 import App from './App';
+// import "../node_modules/slick-carousel/slick/slick.css"; 
+// import "slick-carousel/slick/slick-theme.css";
 
 const store = createStore(Reducer);
 

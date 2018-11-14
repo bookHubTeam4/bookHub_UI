@@ -4,17 +4,28 @@ import { Panel } from "react-bootstrap";
 import NavBar from "../NavBar/NavBar";
 import Style from "./SearchLogin.css";
 import Books from "../HOC/BookLoading";
+import Recommendation from '../Recommendation/Recommendation';
+import { getRecommendation } from '../../Service/Services'
+import RecommendationHOC from '../HOC/RecommandationHOC'
 
 class SearchLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true
+      show: true,
+      Recommendation : null
     };
   }
 
   logouthandle = () => {
-    console.log("logout::::::::::::::::::::")
+    this.props.logout();
+  }
+
+  componentDidMount(){
+    getRecommendation('Sg13ujsKcq_XtsCvD7Cs').then(e=>e.json()).then(e=>{
+      console.table(e)
+      this.setState({Recommendation:e.book})
+    })
   }
 
   render() {
@@ -57,12 +68,8 @@ class SearchLogin extends React.Component {
           </div>
 
           <div className={Style.recdiv}>
-            <h3>Recommendation</h3>
-            <Panel>
-              <Panel.Body>
-                <h4>Fiction</h4>
-              </Panel.Body>
-            </Panel>
+            <h1>Recommendation:</h1>
+           <RecommendationHOC {...this.state.Recommendation}/>
           </div>
         </div>
       </React.Fragment>
