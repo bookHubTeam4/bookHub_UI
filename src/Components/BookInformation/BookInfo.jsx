@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BookInfoService } from "../../Service/Services";
+import { BookInfoService,BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
 import { Container, Row, Col, Jumbotron, Badge, Button } from "reactstrap";
@@ -7,14 +7,17 @@ import { Container, Row, Col, Jumbotron, Badge, Button } from "reactstrap";
 import {Redirect } from "react-router-dom";
 
 class BookInfo extends Component {
-  
+ 
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       flag: false,
       LoggedInFlag: false,
-      buttonClicked: false
+      buttonClicked: false,
+      button1: "primary",
+      button2: "primary",
+      button3: "primary",
     };
    
     this.check=this.check.bind(this);
@@ -40,10 +43,33 @@ class BookInfo extends Component {
    }
    else{
     console.log("entering else statem");
+    BookStatusService(param,this.props.match.params.number,this.props.tokken)
+    .then(response=>response.json())
+    .then(data => {
+      
+      if(data.status === "wants_to_read")
+                      {
+                        this.setState( {button1 : "success",button2 : "primary",button3 : "primary"});
+                      }
+      else if (data.status === "reading")
+      {
+        this.setState( {button1 : "primary",button2 : "success",button3 : "primary"});
+      
+      }
+      else if (data.status === "read")
+      {
+
+        this.setState( {button1 : "primary",button2 : "primary",button3 : "success"});
+      
+      }
+  
+  })
+    console.log(" promise made ");
     this.setState({ 
       LoggedInFlag : true,
       buttonClicked : true
     });
+         
 
 
   
@@ -107,9 +133,10 @@ class BookInfo extends Component {
               </div>{" "}
             </div>
             <div align="center">
-              <Button color="primary" onClick={() => this.check(1)} >1Add To Reading List</Button>{" "}
-              <Button color="success" onClick={() => this.check(3)} >3Finished Reading</Button>{" "}
-              <Button color="danger" onClick={() => this.check(2)}  >2Reading </Button>{" "}
+              <Button color={this.state.button1} onClick={() => this.check(1)} >1Add To Reading List</Button>{" "}
+                <Button color={this.state.button2}  onClick={() => this.check(2)}  >2Reading </Button>{" "}
+                <Button color={this.state.button3}  onClick={() => this.check(3)} >3Finished Reading</Button>{" "}
+           
             </div>
           </Jumbotron>
         </div>
