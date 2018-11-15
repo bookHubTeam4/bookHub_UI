@@ -114,7 +114,7 @@ class BookInfo extends Component {
                     : this.state.items.book.description}
                 </h4>
             </div>
-
+            </div>
             <div className="row">
               <div style={{ padding: 50 }}>
                 <p>AUTHOR : {this.state.items.book.author}</p>
@@ -133,6 +133,7 @@ class BookInfo extends Component {
               <Button color={this.state.button3} onClick={() => this.check(3)}>
                 Can't Buy?
               </Button>{" "}
+          </div>
           </div>
         </React.Fragment>
       );

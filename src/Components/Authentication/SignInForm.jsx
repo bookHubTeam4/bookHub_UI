@@ -46,7 +46,7 @@ class SignInForm extends Component {
   }
 
   handleShow() {
-    this.snp
+    this.setState({show: true})
   }
 
   handleChange(e) {
