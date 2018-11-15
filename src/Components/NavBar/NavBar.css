@@ -5,7 +5,7 @@
 
   .navBtn {
     float: right;
-    background-color: Transparent;
+    background-color: black;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
@@ -29,8 +29,8 @@
   .rightUl{
     float: right;
     padding-top: 2%;
-    width:20%;
-    padding-block-end: 2%
+    
+    
   }
   
   nav ul li {
@@ -72,6 +72,25 @@
     width:30%;
   }
 
-  .rightUl li{
-    padding: 3%;
+  .rightUl{
+    padding-top: 1%;
+  }
+
+  
+  .rightUl li a {
+    padding: 18px;
+  font-family: "Open Sans";
+  text-transform:uppercase;
+  color:black;
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+  margin-left: 0ch;
+  padding-top: 0ch;
+
+  }
+
+  .divNav{
+    height: auto;
+    width: unset;
   }

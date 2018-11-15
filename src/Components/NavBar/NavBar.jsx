@@ -67,10 +67,11 @@ class NavBar extends React.Component {
 
     var navbar = (
       <React.Fragment>
+      <div className={Styles.divNav}>
         <ul className={Styles.leftUl}>
           <MenuItem>
           <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
-              <span><img src={logo}  alt='logo' classNmae={Styles.logo}/> <p className={Styles.book}>BookHub</p></span>
+              <span><img src={logo}  alt='logo' classNmae={Styles.logo}/> </span>
             </LinkContainer>
           </MenuItem>
 
@@ -80,6 +81,7 @@ class NavBar extends React.Component {
         <ul className={Styles.rightUl}>
           <React.Fragment>{navName}</React.Fragment>
         </ul>
+        </div>
       </React.Fragment>
     );
 

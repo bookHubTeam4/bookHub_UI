@@ -38,7 +38,7 @@ class SearchLogin extends React.Component {
         <div
           style={{
             position: "absolute",
-            top: "15%",
+            top: "20%",
             width: "100%",
             display: "block"
           }}
