@@ -12,7 +12,7 @@
     overflow: hidden;
     outline:none;
 }
-
+ 
 
   nav {
     max-width: 100%;
@@ -21,11 +21,16 @@
 
   .leftUl {
     float: left;
+    margin-left: -130px;
+    width: 15%
     
   }
 
   .rightUl{
     float: right;
+    padding-top: 2%;
+    width:20%;
+    padding-block-end: 2%
   }
   
   nav ul li {
@@ -39,13 +44,14 @@
   
   
   nav ul li a {
-    padding: 18px;
+    padding: 0px;
     font-family: "Open Sans";
     text-transform:uppercase;
     color: white;
     font-size: 18px;
     text-decoration: none;
     display: block;
+    margin-left: 5%;
   }
   
   nav ul li a:hover {
@@ -53,4 +59,19 @@
     background: rgba(255, 255, 255, 0.1);
     color: rgba(0, 35, 122, 0.7);
   }
-  
+
+  .logo{
+    width: 30%;
+    height: 131px;
+   }
+   .book{
+     display: inline;
+     margin-inline-start: 35%;
+   }
+  nav ul li span img{
+    width:30%;
+  }
+
+  .rightUl li{
+    padding: 3%;
+  }

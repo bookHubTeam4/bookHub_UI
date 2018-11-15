@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Modal, MenuItem } from "react-bootstrap";
 import Styles from "../NavBar/NavBar.css";
+import logo from "../../img/icon.png";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -68,16 +69,12 @@ class NavBar extends React.Component {
       <React.Fragment>
         <ul className={Styles.leftUl}>
           <MenuItem>
-            <LinkContainer to={{ pathname: "/foo", query: { bar: "baz" } }}>
-              <span>Img</span>
+          <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
+              <span><img src={logo}  alt='logo' classNmae={Styles.logo}/> <p className={Styles.book}>BookHub</p></span>
             </LinkContainer>
           </MenuItem>
 
-          <MenuItem>
-            <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
-              <span>BookHub</span>
-            </LinkContainer>
-          </MenuItem>
+         
         </ul>
 
         <ul className={Styles.rightUl}>
