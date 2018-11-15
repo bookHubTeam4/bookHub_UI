@@ -21,8 +21,9 @@ class BookInfo extends Component {
     
   }
 
-  check()
+  check(param)
   {
+    console.log("Button "+param +" clicked");
     
      // this.state.buttonClicked = true  ;
    
@@ -43,6 +44,7 @@ class BookInfo extends Component {
       LoggedInFlag : true,
       buttonClicked : true
     });
+
 
   
 
@@ -74,7 +76,7 @@ class BookInfo extends Component {
               <Row>
                 <Col>
                   <Badge color="primary">
-                    <h1>{this.state.items.book.title}</h1>
+                    <h1 align="center">{this.state.items.book.title}</h1>
                   </Badge>
                 </Col>
               </Row>
@@ -105,9 +107,9 @@ class BookInfo extends Component {
               </div>{" "}
             </div>
             <div align="center">
-              <Button color="primary" onClick={this.check} >Add To Reading List</Button>{" "}
-              <Button color="success" onClick={this.check} >Finished Reading</Button>{" "}
-              <Button color="danger" onClick={this.check}  >Can't Buy?</Button>{" "}
+              <Button color="primary" onClick={() => this.check(1)} >1Add To Reading List</Button>{" "}
+              <Button color="success" onClick={() => this.check(3)} >3Finished Reading</Button>{" "}
+              <Button color="danger" onClick={() => this.check(2)}  >2Reading </Button>{" "}
             </div>
           </Jumbotron>
         </div>
