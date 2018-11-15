@@ -1,0 +1,15 @@
+.bookimg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.recpic {
+  padding: 25px;
+  width: 300px;
+  height: 350px;
+}
+
+h3::first-letter {
+  text-transform: capitalize;
+}

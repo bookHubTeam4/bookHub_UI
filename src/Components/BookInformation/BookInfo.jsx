@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BookInfoService,BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
-import { Container, Row, Col, Jumbotron, Badge, Button } from "reactstrap";
+import { Button } from "react-bootstrap";
 
 import {Redirect } from "react-router-dom";
 
@@ -87,63 +87,58 @@ class BookInfo extends Component {
   }
 
   render() {
-         
-    if (this.state.LoggedInFlag === false && this.state.buttonClicked === true) {
-        
+    let text =
+      "Greatest properly off ham exercise all. Unsatiable invitation its possession nor off. All difficulty estimating unreserved increasing the solicitude. Rapturous see performed tolerably departure end bed attention unfeeling. On unpleasing principles alteration of. Be at performed preferred determine collected. Him nay acuteness discourse listening estimable our law. Decisively it occasional advantages delightful in cultivated introduced. Like law mean form are sang loud lady put. ";
+     if (this.state.LoggedInFlag === false && this.state.buttonClicked === true) {
       return <Redirect to= '/login' /> }
-
-
-
-    if (this.state.flag) {
+        
+        
+     if (this.state.flag) {
       return (
-        <div className={Style.pimg}>
-          <Jumbotron>
-            <Container>
-              <Row>
-                <Col>
-                  <Badge color="primary">
-                    <h1 align="center">{this.state.items.book.title}</h1>
-                  </Badge>
-                </Col>
-              </Row>
-            </Container>
-          </Jumbotron>
+        <React.Fragment>
+          <div className={Style.header}>
+            <h1 className={Style.headerText}>{this.state.items.book.title}</h1>
+          </div>
 
-          <Jumbotron>
+          <div className={Style.content}>
             <div className="row">
-              <div className="col-md-4">
-                <img
-                  width="300"
-                  height="400"
-                  src={this.state.items.book.image_url}
-                  alt="book_pic"
-                />
+              <div className="col-md-2">
+                <img src={this.state.items.book.image_url} alt="book_pic" />
               </div>
 
-              <div className="col-md-4">
-                <h4> {this.state.items.book.description}</h4>
-              </div>
+              <div style={{ margin: "auto" }} className="col-md-10">
+                <h4 className={Style.text}>
+                  {" "}
+                  {this.state.items.book.description !== " "
+                    ? text
+                    : this.state.items.book.description}
+                </h4>
             </div>
-            <br /> <br /> <br />
+
             <div className="row">
-              <div className="col-md-4">
+              <div style={{ padding: 50 }}>
                 <p>AUTHOR : {this.state.items.book.author}</p>
                 <p>Published Date : {this.state.items.book.published_date}</p>
                 <p>ISBN : {this.state.items.book.isbn}</p>
               </div>{" "}
             </div>
-            <div align="center">
-              <Button color={this.state.button1} onClick={() => this.check(1)} >1Add To Reading List</Button>{" "}
-                <Button color={this.state.button2}  onClick={() => this.check(2)}  >2Reading </Button>{" "}
-                <Button color={this.state.button3}  onClick={() => this.check(3)} >3Finished Reading</Button>{" "}
-           
-            </div>
-          </Jumbotron>
-        </div>
+
+            <div className={Style.btngrp}>
+              <Button color={this.state.button1} onClick={() => this.check(1)}>
+                Add To Reading List
+              </Button>{" "}
+              <Button color={this.state.button2} onClick={() => this.check(2)}>
+                Finished Reading
+              </Button>{" "}
+              <Button color={this.state.button3} onClick={() => this.check(3)}>
+                Can't Buy?
+              </Button>{" "}
+          </div>
+        </React.Fragment>
       );
     }
 
-    return <div>Loading...</div>;
+    return <div className={Style.loader}>Loading...</div>;
   }
 }
 

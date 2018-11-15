@@ -15,7 +15,11 @@ class SearchMain extends React.Component {
   }
 
   userLogout = () =>{
-    
+    this.setState({
+      searchText: "",
+      sClick: false,
+      books: []
+    })
   }
 
   searchInput = data => {
@@ -53,7 +57,7 @@ class SearchMain extends React.Component {
           click={this.onSearch}
           books={this.state.books}
           input={this.state.sClick}
-
+          logout={this.userLogout}
         />
       );
     } else {
