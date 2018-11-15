@@ -22,7 +22,7 @@ const RecommandationHOC = (props) =>{
        rec=<div className={Style.loader}>Loading...</div>;
     }else{
         rec = obj.map((e,i)=>{
-            return isEmpty(e.books)?null:<Recommandation key={i} books={e.books} genre ={e.genre} />
+            return isEmpty(e.books)?null:<Recommandation style={{marginTop:20}} key={i} books={e.books} genre ={e.genre} />
         })
     }
 
