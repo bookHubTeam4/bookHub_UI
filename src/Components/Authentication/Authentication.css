@@ -10,19 +10,113 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
+
   .login__Form {
-    margin-top: 60px;
+    margin-top: 100px;
     border-radius: 25px;
     text-align: center;
     position: absolute;
-    right: 30px;
-    width: 350px;
+    right: 100px;
+    width: 300px;
     opacity: .8;
     background-color: white;
     overflow: hidden;
   }
+
+  .buttonFB {
+    background-color: #3b5998;
+    border: none;
+    color: white;
+    padding: 15px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+
+  .FormCenter {
+    margin-bottom: 10px;
+  }
+  .FormField__Link {
+    color: #66707D;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 1.5px solid #225E62;
+    padding-bottom: 5px;
+  }
+
+  .FormTitle {
+    color:black;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.7em;
+    margin: 0 10px;
+    padding:30px 10px 30px 10px
+  }
+
+  .hrStyle { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 2px;
+} 
   
-  .PageSwitcher {
+  .FormTitle__Link {
+    color: #707C8B;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.7em;
+    margin: 0 10px;
+    padding:10px 10px 10px 10px
+  }
+  
+  .FormTitle__Link:first-child {
+    margin-left: 0;
+  }
+  
+  .FormTitle__Link:Active {
+    color: blue;
+    border-bottom: 1px solid #199087;
+  }
+  
+  .FormField {
+    margin-bottom: 10px;
+    padding: 10px 30px 10px 30px;
+  }
+  
+  /* .FormField__Label {
+    display: block;
+    text-transform: uppercase;
+    font-size: .9em;
+    color: black;
+  } */
+  /* .FormField__Input {
+    width: 85%;
+    background-color: transparent;
+    border: none;
+    color: black;
+    outline: none;
+    border-bottom: 1px solid #445366;
+    font-size: 1em;
+    font-weight: 300;
+    padding-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .FormField__Input::placeholder {
+    color: #616E7F;
+  }
+   */
+  
+    
+  /* .PageSwitcher {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 10%;
@@ -47,99 +141,11 @@
   .PageSwitcher__Item:last-child {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-  }
+  } */
   
-  .FormCenter {
+    /* .FormTitle {
+    color:black;
+    font-weight: 300;
     margin-bottom: 100px;
-  }
-  
-  .FormTitle {
-    color: black;
-    font-weight: 300;
-    margin-bottom: 50px;
-  }
-  
-  .FormTitle__Link {
-    color: #707C8B;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.7em;
-    margin: 0 10px;
-    padding-bottom: 5px;
-  }
-  
-  .FormTitle__Link:first-child {
-    margin-left: 0;
-  }
-  
-  .FormTitle__Link--Active {
-    color: blue;
-    border-bottom: 1px solid #199087;
-  }
-  
-  .FormField {
-    margin-bottom: 10px;
-    padding: 10px 30px 10px 30px;
-  }
-  
-  .FormField__Label {
-    display: block;
-    text-transform: uppercase;
-    font-size: .9em;
-    color: black;
-  }
-  .FormField__Input {
-    width: 85%;
-    background-color: transparent;
-    border: none;
-    color: black;
-    outline: none;
-    border-bottom: 1px solid #445366;
-    font-size: 1em;
-    font-weight: 300;
-    padding-bottom: 10px;
-    margin-top: 10px;
-  }
-  
-  .FormField__Input::placeholder {
-    color: #616E7F;
-  }
-  
-  .FormField__Button {
-    background-color: #52C4B9;
-    color: black;
-    border: none;
-    outline: none;
-    border-radius: 25px;
-    padding: 15px 70px;
-    font-size: .8em;
-    font-weight: 500;
-  }
-  
-  .FormField__Link {
-    color: #66707D;
-    text-decoration: none;
-    display: inline-block;
-    border-bottom: 1.5px solid #225E62;
-    padding-bottom: 5px;
-  }
-  
-  .FormField__CheckboxLabel {
-    color: #646F7D;
-    font-size: .9em;
-  }
-  
-  .FormField__Checkbox {
-    position: relative;
-    top: 1.5px;
-  }
-  
-  .FormField__TermsLink {
-    color: black;
-    border-bottom: 1px solid #199087;
-    text-decoration: none;
-    display: inline-block;
-    padding-bottom: 2px;
-    margin-left: 5px;
-  }
-  
+    padding-top: 50px;
+  } */

@@ -100,6 +100,7 @@ console.log("info for calling   "+status+" "+isbn+" "+ token);
 
 export const signUpService = (firstName, lastName, emailId, password) => {
   return new Promise((resolve, reject) => {
+    console.log(`https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&address&email=${emailId}&password=${password}`);
     fetch(
       `https://bookhub-api.herokuapp.com/api/version1/users?firstName=${firstName}&lastName=${lastName}&address&email=${emailId}&password=${password}`,
       {

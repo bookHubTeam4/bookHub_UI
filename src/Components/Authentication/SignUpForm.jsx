@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import Style from "../Authentication/Authentication.css";
 import { signUpService, favouriteGenre } from "../../Service/Services";
 import NavBar from "../../Components/NavBar/NavBar";
-import { Modal,Row,Col,Checkbox,FormGroup  } from 'react-bootstrap';
+import { Modal,Row,Col,Checkbox,FormGroup, Alert  } from 'react-bootstrap';
 //import favouriteGenre from '../Modals/favouriteGenre'
 
 class SignUpForm extends Component {
@@ -38,6 +38,7 @@ class SignUpForm extends Component {
       // travel:false,
       // culture:false,
       // misc:false
+      alert:false
 
     };
 
@@ -47,6 +48,7 @@ class SignUpForm extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
   handleClose() {
     this.setState({ show: false });
@@ -54,6 +56,10 @@ class SignUpForm extends Component {
 
   handleRedirect() {
     this.props.history.push("/");
+  }
+  
+  handleDismiss() {
+    this.setState({ alert: false });
   }
 
   handleShow() {
@@ -115,8 +121,7 @@ class SignUpForm extends Component {
     )
       .then(e => e.json())
       .then(e => {
-        console.log(e);
-        if (e.user.authentication_token) {
+        if (e.hasOwnProperty('user')) {
           localStorage.setItem("tokken", e.user.authentication_token);
           localStorage.setItem("name", e.user.firstName+" "+e.user.lastName);
           this.props.onTokkenRecive(e.user.authentication_token);
@@ -124,12 +129,30 @@ class SignUpForm extends Component {
           //this.props.history.push("/");
           this.handleShow();
         }
+        else
+        {
+          //alert("Invalid Username or Password");
+          this.setState({ alert: true });
+        }
       });
   }
 
   render() {
+    let alert = null;
+    if (this.state.alert) {
+      alert = (
+        <React.Fragment>
+           <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+          <p>
+            Invalid Credentials
+          </p>
+        </Alert>
+        </React.Fragment>
+      );
+    }
     return (
       <div className={Style.login_bg}>
+        {alert}
       <NavBar/>
 
       {/* {this.state.show?<favouriteGenre show={this.state.show} onHide={this.handleClose}/>:null} */}
@@ -138,7 +161,6 @@ class SignUpForm extends Component {
             <Modal.Title>Select Favourite Genre</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Select Favourite Genre</h4>
             <form className="form-group">
           <Row className="show-grid">
           <Col xs={12} md={4}>
@@ -343,11 +365,12 @@ class SignUpForm extends Component {
           </Modal.Body>
         </Modal>
         <div className={Style.login__Form}>
-          <div>
+        <div >
             <NavLink
               to="/login"
               activeClassName={Style.FormTitle__Link}
               className={Style.FormTitle__Link}
+              //className="btn btn-primary"
             >
               Sign In
             </NavLink>{" "}
@@ -411,11 +434,11 @@ class SignUpForm extends Component {
         
         </form>
       </div>
-      <div className={Style.FormField}>
+      {/* <div className={Style.FormField}>
             <button className="btn btn-primary" onClick={e=>{
               this.setState({show:true})
             }}>Model Open</button>
-      </div>
+      </div> */}
       </div>
  
       </div>
