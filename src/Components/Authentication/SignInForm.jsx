@@ -7,7 +7,7 @@ import { GoogleLogin } from "react-google-login";
 import  FacebookLogin  from "react-facebook-login";
 import { withRouter } from 'react-router-dom';
 import NavBar from "../../Components/NavBar/NavBar";
-import { Modal,Row,Col,Checkbox,FormGroup  } from 'react-bootstrap';
+import { Alert,Modal,Row,Col, Button  } from 'react-bootstrap';
 
 class SignInForm extends Component {
   constructor() {
@@ -19,6 +19,7 @@ class SignInForm extends Component {
       password: "",
       isOpen:false,
       show: false,
+      alert:false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,10 +30,15 @@ class SignInForm extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
 
   handleClose() {
     this.setState({ show: false });
+  }
+
+  handleDismiss() {
+    this.setState({ alert: false });
   }
 
   handleRedirect() {
@@ -40,7 +46,7 @@ class SignInForm extends Component {
   }
 
   handleShow() {
-    this.setState({ show: true });
+    this.snp
   }
 
   handleChange(e) {
@@ -59,13 +65,19 @@ class SignInForm extends Component {
 
     loginService(this.state.email, this.state.password)
       .then(e => e.json()).then(e => {
-        if (e.user.authentication_token) {
+        console.log(e);
+        if (e.hasOwnProperty('user')) {
           this.props.onTokkenRecive(e.user.authentication_token);
           this.props.onNameReceive(e.user.firstName+" "+e.user.lastName);
           localStorage.setItem("tokken", e.user.authentication_token);
           localStorage.setItem("name", e.user.firstName+" "+e.user.lastName);
           console.log(this.props.tokken);
           this.props.history.push("/");
+        }
+        else
+        {
+          //alert("Invalid Username or Password");
+          this.setState({ alert: true });
         }
       });
   }
@@ -149,15 +161,31 @@ class SignInForm extends Component {
 
 
   render() {
+
+    let alert = null;
+    if (this.state.alert) {
+      alert = (
+        <React.Fragment>
+           <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+          <p>
+            Invalid username or password
+          </p>
+        </Alert>
+        </React.Fragment>
+      );
+    }
     return (
       <div className={Style.login_bg}>
+     
+      {alert}
       <NavBar/>
+     
       <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Select Favourite Genre</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Select Favourite Genre</h4>
+
             <form className="form-group">
           <Row className="show-grid">
           <Col xs={12} md={4}>
@@ -379,6 +407,7 @@ class SignInForm extends Component {
               Sign Up
             </NavLink>
           </div>
+         
       <div className={Style.FormCenter}>
         <form onSubmit={this.handleSubmit} className="form-group">
           <div className={Style.FormField}>
@@ -406,37 +435,41 @@ class SignInForm extends Component {
           </div>
 
           <div className={Style.FormField}>
-            <button className="btn btn-primary">Sign In</button>{" "}
+            <Button type="submit" bsStyle="primary">Sign In</Button>{" "}
             <Link to="/signUp" className={Style.FormField__Link}>
               Create an account
             </Link>
           </div>
         </form>
-        <Row>
+        <hr className={Style.hrStyle}></hr>
+        Log In with
+        <Row style={{ padding: "10px" }}>
         <Col md={12}>
         <GoogleLogin 
           clientId="867945999343-gr16hdcap7et6keb5qf8lderkurtri27.apps.googleusercontent.com"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}
-          style={{ width: "70%"
-        }}
+          
         >
           <i
-            style={{ color: "white" }}
+            style={{ color: "White" }}
             className="fab fa-google"
           />
+          {" "}
           <span>Login with Google</span>
         </GoogleLogin>
         </Col>
         </Row>
         
-        <Row style={{ padding: "30px" }}>     
+        <Row style={{ padding: "10px" }}>     
         <Col md={12}>
         <FacebookLogin 
           appId="2187369724923695"
           autoLoad={false}
           fields="first_name,last_name,email,picture"
           callback={this.responseFacebook}
+          cssClass={Style.buttonFB}
+          
           icon="fa-facebook"   
         />
         </Col>
