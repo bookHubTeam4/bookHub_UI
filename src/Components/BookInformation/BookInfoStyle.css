@@ -35,6 +35,17 @@ img {
   top:20%;
 }
 
+.primary{
+  color: #0a1dca;
+  background: #bc9ee4
+}
+
+.secondary{
+  color: #bc9ee4;
+  background: #0a1dca
+}
+
+
 .btngrp {
   list-style: none;
   display: flex;

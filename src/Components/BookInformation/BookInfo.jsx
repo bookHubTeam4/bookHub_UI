@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { BookInfoService,BookStatusService } from "../../Service/Services";
+import { BookInfoService, BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
 import { Button } from "react-bootstrap";
 
-import {Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class BookInfo extends Component {
- 
   constructor(props) {
     super(props);
     this.state = {
@@ -15,67 +14,61 @@ class BookInfo extends Component {
       flag: false,
       LoggedInFlag: false,
       buttonClicked: false,
-      button1: "primary",
-      button2: "primary",
-      button3: "primary",
+      button1: Style.secondary,
+      button2: Style.secondary,
+      button3: Style.secondary
     };
-   
-    this.check=this.check.bind(this);
-    
+
+    this.check = this.check.bind(this);
   }
 
-  check(param)
-  {
-    console.log("Button "+param +" clicked");
-    
-     // this.state.buttonClicked = true  ;
-   
-   // if(this.props.tokken)
-   console.log("this is **********token "+this.props.tokken);
-   if(this.props.tokken === "")
-   {
-    console.log("entering if statem");
-    this.setState({ 
-     
-      buttonClicked : true
-    });
+  check(param) {
+    console.log("Button " + param + " clicked");
 
-   }
-   else{
-    console.log("entering else statem");
-    BookStatusService(param,this.props.match.params.number,this.props.tokken)
-    .then(response=>response.json())
-    .then(data => {
-      
-      if(data.status === "wants_to_read")
-                      {
-                        this.setState( {button1 : "success",button2 : "primary",button3 : "primary"});
-                      }
-      else if (data.status === "reading")
-      {
-        this.setState( {button1 : "primary",button2 : "success",button3 : "primary"});
-      
-      }
-      else if (data.status === "read")
-      {
+    // this.state.buttonClicked = true  ;
 
-        this.setState( {button1 : "primary",button2 : "primary",button3 : "success"});
-      
-      }
-  
-  })
-    console.log(" promise made ");
-    this.setState({ 
-      LoggedInFlag : true,
-      buttonClicked : true
-    });
-         
-
-
-  
-
-   }
-
+    // if(this.props.tokken)
+    console.log("this is **********token " + this.props.tokken);
+    if (this.props.tokken === "") {
+      console.log("entering if statem");
+      this.setState({
+        buttonClicked: true
+      });
+    } else {
+      console.log("entering else statem");
+      BookStatusService(
+        param,
+        this.props.match.params.number,
+        this.props.tokken
+      )
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "wants_to_read") {
+            this.setState({
+              button1: Style.primary,
+              button2: Style.secondary,
+              button3: Style.secondary
+            });
+          } else if (data.status === "reading") {
+            this.setState({
+              button1: Style.secondary,
+              button2: Style.primary,
+              button3: Style.secondary
+            });
+          } else if (data.status === "read") {
+            this.setState({
+              button1: Style.secondary,
+              button2: Style.secondary,
+              button3: Style.primary
+            });
+          }
+        });
+      console.log(" promise made ");
+      this.setState({
+        LoggedInFlag: true,
+        buttonClicked: true
+      });
+    }
   }
   componentDidMount() {
     BookInfoService(this.props.match.params.number)
@@ -83,17 +76,20 @@ class BookInfo extends Component {
       .then(e => {
         this.setState({ items: e, flag: true });
       });
-      console.log(this.props.tokken);
+    console.log(this.props.tokken);
   }
 
   render() {
     let text =
       "Greatest properly off ham exercise all. Unsatiable invitation its possession nor off. All difficulty estimating unreserved increasing the solicitude. Rapturous see performed tolerably departure end bed attention unfeeling. On unpleasing principles alteration of. Be at performed preferred determine collected. Him nay acuteness discourse listening estimable our law. Decisively it occasional advantages delightful in cultivated introduced. Like law mean form are sang loud lady put. ";
-     if (this.state.LoggedInFlag === false && this.state.buttonClicked === true) {
-      return <Redirect to= '/login' /> }
-        
-        
-     if (this.state.flag) {
+    if (
+      this.state.LoggedInFlag === false &&
+      this.state.buttonClicked === true
+    ) {
+      return <Redirect to="/login" />;
+    }
+
+    if (this.state.flag) {
       return (
         <React.Fragment>
           <div className={Style.header}>
@@ -113,6 +109,7 @@ class BookInfo extends Component {
                     ? text
                     : this.state.items.book.description}
                 </h4>
+              </div>
             </div>
 
             <div className="row">
@@ -124,15 +121,16 @@ class BookInfo extends Component {
             </div>
 
             <div className={Style.btngrp}>
-              <Button color={this.state.button1} onClick={() => this.check(1)}>
+              <Button className={this.state.button1} onClick={() => this.check(1)}>
                 Add To Reading List
               </Button>{" "}
-              <Button color={this.state.button2} onClick={() => this.check(2)}>
-                Finished Reading
+              <Button className={this.state.button2} onClick={() => this.check(2)}>
+                Reading
               </Button>{" "}
-              <Button color={this.state.button3} onClick={() => this.check(3)}>
-                Can't Buy?
+              <Button className={this.state.button3} onClick={() => this.check(3)}>
+                Read
               </Button>{" "}
+            </div>
           </div>
         </React.Fragment>
       );
@@ -152,9 +150,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: tokken }),
-    onNameReceive:name => dispatch({type:"NAME",payLoad: name})
+    onNameReceive: name => dispatch({ type: "NAME", payLoad: name })
   };
 };
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(BookInfo);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookInfo);
