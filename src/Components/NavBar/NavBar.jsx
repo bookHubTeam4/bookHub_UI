@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import { Modal, MenuItem } from "react-bootstrap";
+import { Modal, MenuItem, Glyphicon } from "react-bootstrap";
 import Styles from "../NavBar/NavBar.css";
+import logo from "../../img/icon.png";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class NavBar extends React.Component {
   handleLogout() {
     this.props.onTokkenRecive();
     this.props.onNameReceive();
-    localStorage.setItem("tokken","");
+    localStorage.setItem("tokken", "");
     localStorage.setItem("name", "");
     if(this.props.login){
       this.props.logout();
@@ -35,17 +36,29 @@ class NavBar extends React.Component {
 
   render() {
     console.log("navbar");
-    console.log(this.props)
+    console.log(this.props);
     let navName = null;
     if (this.props.tokken !== "") {
       navName = (
         <React.Fragment>
           <MenuItem>
-            <span>{this.props.name}</span>
+            <LinkContainer to={{ pathname: "/MyShelf" }}>
+              <span>My Shelf</span>
+            </LinkContainer>
           </MenuItem>
-          <button className="btn btn-link" onClick={this.handleLogout}>
-            <span>Logout</span>
-          </button>
+          <MenuItem>
+            <LinkContainer to={{ pathname: "/PersonalInfo" }}>
+              <span>{this.props.name}</span>
+            </LinkContainer>
+          </MenuItem>
+          <MenuItem>
+            <button className="btn btn-link" onClick={this.handleLogout}>
+              <p style={{ color: "black", marginTop: "10px" }}>
+                {" "}
+                <Glyphicon glyph="glyphicon glyphicon-off" />{" "}
+              </p>
+            </button>
+          </MenuItem>
         </React.Fragment>
       );
     } else {
@@ -68,23 +81,21 @@ class NavBar extends React.Component {
 
     var navbar = (
       <React.Fragment>
-        <ul className={Styles.leftUl}>
-          <MenuItem>
-            <LinkContainer to={{ pathname: "/foo", query: { bar: "baz" } }}>
-              <span>Img</span>
-            </LinkContainer>
-          </MenuItem>
+        <div className={Styles.divNav}>
+          <ul className={Styles.leftUl}>
+            <MenuItem>
+              <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
+                <span>
+                  <img src={logo} alt="logo" classNmae={Styles.logo} />{" "}
+                </span>
+              </LinkContainer>
+            </MenuItem>
+          </ul>
 
-          <MenuItem>
-            <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
-              <span>BookHub</span>
-            </LinkContainer>
-          </MenuItem>
-        </ul>
-
-        <ul className={Styles.rightUl}>
-          <React.Fragment>{navName}</React.Fragment>
-        </ul>
+          <ul className={this.props.login ? Styles.rightUl : Styles.rightUll}>
+            <React.Fragment>{navName}</React.Fragment>
+          </ul>
+        </div>
       </React.Fragment>
     );
 
@@ -147,7 +158,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onTokkenRecive: tokken => dispatch({ type: "TOKKEN", payLoad: "" }),
-    onNameReceive: name => dispatch({ type: "NAME", payLoad:  ""})
+    onNameReceive: name => dispatch({ type: "NAME", payLoad: "" })
   };
 };
 

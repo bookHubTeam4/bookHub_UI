@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { BookInfoService, BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
-import { Button } from "react-bootstrap";
-import Navbar from '../NavBar/NavBar';
-
+import { Button, Panel } from "react-bootstrap";
+import Navbar from "../NavBar/NavBar";
 import { Redirect } from "react-router-dom";
 
 class BookInfo extends Component {
@@ -22,6 +21,11 @@ class BookInfo extends Component {
 
     this.check = this.check.bind(this);
   }
+
+
+  logouthandle = () => {
+    console.log("logout");
+  };
 
   check(param) {
     console.log("Button " + param + " clicked");
@@ -93,7 +97,7 @@ class BookInfo extends Component {
     if (this.state.flag) {
       return (
         <React.Fragment>
-          <Navbar/>
+          <Navbar logout={this.logouthandle} />
           <div className={Style.header}>
             <h1 className={Style.headerText}>{this.state.items.book.title}</h1>
           </div>
@@ -105,15 +109,16 @@ class BookInfo extends Component {
               </div>
 
               <div style={{ margin: "auto" }} className="col-md-10">
-                <h4 className={Style.text}>
-                  {" "}
-                  {this.state.items.book.description === " "
-                    ? text
-                    : this.state.items.book.description}
-                </h4>
+                <Panel>
+                  <h4 className={Style.text}>
+                    {" "}
+                    {this.state.items.book.description === " "
+                      ? text
+                      : this.state.items.book.description}
+                  </h4>
+                </Panel>
               </div>
             </div>
-
             <div className="row">
               <div style={{ padding: 50 }}>
                 <p>AUTHOR : {this.state.items.book.author}</p>
@@ -123,13 +128,22 @@ class BookInfo extends Component {
             </div>
 
             <div className={Style.btngrp}>
-              <Button color={this.state.button1} onClick={() => this.check(1)}>
+              <Button
+                bsStyle={this.state.button1}
+                onClick={() => this.check(1)}
+              >
                 Add To Reading List
               </Button>{" "}
-              <Button color={this.state.button2} onClick={() => this.check(2)}>
+              <Button
+                bsStyle={this.state.button2}
+                onClick={() => this.check(2)}
+              >
                 Finished Reading
               </Button>{" "}
-              <Button color={this.state.button3} onClick={() => this.check(3)}>
+              <Button
+                bsStyle={this.state.button3}
+                onClick={() => this.check(3)}
+              >
                 Can't Buy?
               </Button>{" "}
             </div>

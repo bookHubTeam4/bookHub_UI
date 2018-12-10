@@ -23,6 +23,7 @@ const Search = props => {
           <input
             className={Style.searchText}
             type="input"
+            placeholder = "Name, Author, ISBN... we search it all"
             onChange={e => {
               props.text(e.target.value);
             }}
