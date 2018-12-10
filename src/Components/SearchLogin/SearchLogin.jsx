@@ -53,7 +53,7 @@ class SearchLogin extends React.Component {
               <input
                 className={Style.searchText}
                 type="input"
-                placeholder="Search any book"
+                placeholder = "Name, Author, ISBN... we search it all"
                 onChange={e => {
                   this.props.text(e.target.value);
                 }}
@@ -67,7 +67,7 @@ class SearchLogin extends React.Component {
             </form>
           </div>
 
-          <div>
+          <div style={{margin:'100px'}}>
             <Books {...this.props} />
           </div>
 
