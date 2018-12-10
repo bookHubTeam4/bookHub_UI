@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { BookInfoService, BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
 import { Button, Panel } from "react-bootstrap";
 import Navbar from "../NavBar/NavBar";
-import { Redirect } from "react-router-dom";
 
-class BookInfo extends Component {
+class BookInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,29 +17,19 @@ class BookInfo extends Component {
       button2: "primary",
       button3: "primary"
     };
-
-    this.check = this.check.bind(this);
   }
-
 
   logouthandle = () => {
     console.log("logout");
   };
 
-  check(param) {
-    console.log("Button " + param + " clicked");
-
-    // this.state.buttonClicked = true  ;
-
-    // if(this.props.tokken)
-    console.log("this is **********token " + this.props.tokken);
+  check = param => {
     if (this.props.tokken === "") {
-      console.log("entering if statem");
       this.setState({
         buttonClicked: true
       });
+      this.props.history.push("/login");
     } else {
-      console.log("entering else statem");
       BookStatusService(
         param,
         this.props.match.params.number,
@@ -68,13 +57,8 @@ class BookInfo extends Component {
             });
           }
         });
-      console.log(" promise made ");
-      this.setState({
-        LoggedInFlag: true,
-        buttonClicked: true
-      });
     }
-  }
+  };
   componentDidMount() {
     BookInfoService(this.props.match.params.number)
       .then(e => e.json())
@@ -87,12 +71,6 @@ class BookInfo extends Component {
   render() {
     let text =
       "Greatest properly off ham exercise all. Unsatiable invitation its possession nor off. All difficulty estimating unreserved increasing the solicitude. Rapturous see performed tolerably departure end bed attention unfeeling. On unpleasing principles alteration of. Be at performed preferred determine collected. Him nay acuteness discourse listening estimable our law. Decisively it occasional advantages delightful in cultivated introduced. Like law mean form are sang loud lady put. ";
-    if (
-      this.state.LoggedInFlag === false &&
-      this.state.buttonClicked === true
-    ) {
-      return <Redirect to="/login" />;
-    }
 
     if (this.state.flag) {
       return (
@@ -138,13 +116,13 @@ class BookInfo extends Component {
                 bsStyle={this.state.button2}
                 onClick={() => this.check(2)}
               >
-                Finished Reading
+                Reading
               </Button>{" "}
               <Button
                 bsStyle={this.state.button3}
                 onClick={() => this.check(3)}
               >
-                Can't Buy?
+                Finish Reading
               </Button>{" "}
             </div>
           </div>

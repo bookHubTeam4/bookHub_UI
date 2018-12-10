@@ -84,7 +84,7 @@ class NavBar extends React.Component {
         <div className={Styles.divNav}>
           <ul className={Styles.leftUl}>
             <MenuItem>
-              <LinkContainer to={{ pathname: "/", query: { bar: "baz" } }}>
+              <LinkContainer to={{ pathname: "/" }}>
                 <span>
                   <img src={logo} alt="logo" classNmae={Styles.logo} />{" "}
                 </span>
