@@ -22,6 +22,7 @@ class BookInfo extends Component {
     this.check = this.check.bind(this);
   }
 
+
   logouthandle = () => {
     console.log("logout");
   };

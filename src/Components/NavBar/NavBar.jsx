@@ -21,7 +21,9 @@ class NavBar extends React.Component {
     this.props.onNameReceive();
     localStorage.setItem("tokken", "");
     localStorage.setItem("name", "");
-    this.props.logout();
+    if(this.props.login){
+      this.props.logout();
+    } 
   }
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
