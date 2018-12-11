@@ -1,11 +1,11 @@
 .pimg {
-  /* opacity:0.90; */
+  opacity:0.7;
   overflow-x: hidden;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url("../../img/search_cover.jpeg");
+  background-image: url("../../img/search_cover22.jpeg");
   min-height: 100vh;
 }
 
@@ -13,9 +13,11 @@
   position: absolute;
   top: 20%;
   width: 100%;
-  font-family: "Niconne", cursive;
+  font-family: 'Dancing Script', cursive;
+  /* font-family: "Niconne", cursive; */
   text-align: center;
-  color: #fbedb1;
+  /* color: #fbedb1; */
+  color: #000;
   font-size: 70px;
   font-weight: bold;
   letter-spacing: 2px;
@@ -51,6 +53,11 @@ input {
   outline: none;
   text-indent: 20px;
 }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 24px;
+  font-family: 'Patrick Hand', cursive;
+}
+
 
 .searchText {
   opacity: 0.9;

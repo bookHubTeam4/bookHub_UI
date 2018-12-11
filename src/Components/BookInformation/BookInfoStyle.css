@@ -1,3 +1,15 @@
+.login_bg {
+  /* padding-top: 60px; */
+  height: 100vh;
+  /* display: flex; */
+  background-image: url('../../img/bookinfo3.jpeg');
+  overflow-x: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .header{
   position: absolute;
   width: 100%;
@@ -8,8 +20,8 @@
 
 .headerText {
   padding: 10px;
-  border: solid;  
-  border-style: groove;
+  /* border: solid;  
+  border-style: groove; */
 }
 
 p {

@@ -2,7 +2,7 @@ import React from "react";
 import { BookInfoService, BookStatusService } from "../../Service/Services";
 import { connect } from "react-redux";
 import Style from "./BookInfoStyle.css";
-import { Button, Panel } from "react-bootstrap";
+import {Row,Col, Button, Panel } from "react-bootstrap";
 import Navbar from "../NavBar/NavBar";
 
 class BookInfo extends React.Component {
@@ -74,19 +74,22 @@ class BookInfo extends React.Component {
 
     if (this.state.flag) {
       return (
-        <React.Fragment>
+        <div className={Style.login_bg}>
           <Navbar logout={this.logouthandle} />
           <div className={Style.header}>
             <h1 className={Style.headerText}>{this.state.items.book.title}</h1>
           </div>
 
           <div className={Style.content}>
-            <div className="row">
-              <div className="col-md-2">
+            <Row >
+              <Col md={3}>
                 <img src={this.state.items.book.image_url} alt="book_pic" />
-              </div>
+              </Col>
 
-              <div style={{ margin: "auto" }} className="col-md-10">
+              <Col md={1} />
+
+              <Col md={5}
+                style={{ margin: "auto", textAlign: "center", width: "50%" }}>
                 <Panel>
                   <h4 className={Style.text}>
                     {" "}
@@ -95,8 +98,11 @@ class BookInfo extends React.Component {
                       : this.state.items.book.description}
                   </h4>
                 </Panel>
-              </div>
-            </div>
+              </Col>
+
+              <Col md={3} />
+            </Row>
+
             <div className="row">
               <div style={{ padding: 50 }}>
                 <p>AUTHOR : {this.state.items.book.author}</p>
@@ -126,7 +132,7 @@ class BookInfo extends React.Component {
               </Button>{" "}
             </div>
           </div>
-        </React.Fragment>
+        </div>
       );
     }
 
