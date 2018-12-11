@@ -56,7 +56,31 @@ export const BookInfoService = isbn => {
   });
 };
 
- export const SignInService = (firstName, lastName, emailId, provider) => {
+
+export const BookStatusService = (status, isbn,token) => {
+  return new Promise((resolve, reject) => {
+console.log("info for calling   "+status+" "+isbn+" "+ token);
+
+    fetch(
+      `http://bookhub-api.herokuapp.com/api/version1/user/save_book?status=${status}&isbn=${isbn}&user_token=${token}`,
+      {
+        method: "POST",
+        mode: "cors"
+      }
+    )
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        } else {
+          reject(response.error());
+        }
+      })
+      .catch(err => reject(err));
+  });
+};
+
+
+  export const SignInService = (firstName, lastName, emailId, provider) => {
     return new Promise((resolve, reject)=>{
         fetch(`http://bookhub-api.herokuapp.com/api/version1/auth/request?firstName=${firstName}&lastName=${lastName}&emailId=${emailId}&password=&provider=${provider}`,
         {

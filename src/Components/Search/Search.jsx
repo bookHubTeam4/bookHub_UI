@@ -1,7 +1,7 @@
 import React from "react";
 import { Glyphicon } from "react-bootstrap";
 import NavBar from "../../Components/NavBar/NavBar";
-import Pen from "../../img/quil.svg";
+import Pen from "../../img/bquil.svg";
 import Books from "../HOC/BookLoading";
 import Style from "../Search/Search.css";
 
@@ -23,13 +23,14 @@ const Search = props => {
           <input
             className={Style.searchText}
             type="input"
+            placeholder = "Name, Author, ISBN... we search it all"
             onChange={e => {
               props.text(e.target.value);
             }}
           />{" "}
           <button className={Style.sbtn}>
             <Glyphicon
-              style={{ color: "yellow" }}
+              style={{ color: "black" }}
               glyph="glyphicon glyphicon-search"
             />
           </button>

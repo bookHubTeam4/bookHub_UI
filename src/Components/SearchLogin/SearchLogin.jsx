@@ -1,42 +1,45 @@
 import React from "react";
 import { Glyphicon } from "react-bootstrap";
-import { Panel } from "react-bootstrap";
 import NavBar from "../NavBar/NavBar";
 import Style from "./SearchLogin.css";
 import Books from "../HOC/BookLoading";
-import Recommendation from '../Recommendation/Recommendation';
-import { getRecommendation } from '../../Service/Services'
-import RecommendationHOC from '../HOC/RecommandationHOC'
+import { getRecommendation } from "../../Service/Services";
+import RecommendationHOC from "../HOC/RecommandationHOC";
+import { connect } from "react-redux";
 
 class SearchLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: true,
-      Recommendation : null
+      Recommendation: null
     };
   }
 
   logouthandle = () => {
     this.props.logout();
-  }
+  };
 
-  componentDidMount(){
-    getRecommendation('Sg13ujsKcq_XtsCvD7Cs').then(e=>e.json()).then(e=>{
-      console.table(e)
-      this.setState({Recommendation:e.book})
-    })
+  componentDidMount() {
+    if (this.props.tokken !== "") {
+      getRecommendation(this.props.tokken)
+        .then(e => e.json())
+        .then(e => {
+          console.table(e);
+          this.setState({ Recommendation: e.book });
+        });
+    }
   }
 
   render() {
     return (
       <React.Fragment>
-        <NavBar login={true} logout = {this.logouthandle}/>
+        <NavBar login={true} logout={this.logouthandle} />
         <div
           style={{
-            position:"absolute",
-            top:"20%",
-            width:"100%",
+            position: "absolute",
+            top: "20%",
+            width: "100%",
             display: "block"
           }}
         >
@@ -50,6 +53,7 @@ class SearchLogin extends React.Component {
               <input
                 className={Style.searchText}
                 type="input"
+                placeholder = "Name, Author, ISBN... we search it all"
                 onChange={e => {
                   this.props.text(e.target.value);
                 }}
@@ -63,13 +67,13 @@ class SearchLogin extends React.Component {
             </form>
           </div>
 
-          <div>
+          <div style={{margin:'100px'}}>
             <Books {...this.props} />
           </div>
 
           <div className={Style.recdiv}>
             <h1>Recommendation:</h1>
-           <RecommendationHOC {...this.state.Recommendation}/>
+            <RecommendationHOC {...this.state.Recommendation} />
           </div>
         </div>
       </React.Fragment>
@@ -77,4 +81,13 @@ class SearchLogin extends React.Component {
   }
 }
 
-export default SearchLogin;
+const mapStateToProps = state => {
+  return {
+    tokken: state.tokken
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchLogin);
