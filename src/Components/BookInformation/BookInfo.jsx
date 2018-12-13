@@ -60,7 +60,7 @@ class BookInfo extends React.Component {
     }
   };
   componentDidMount() {
-    BookInfoService(this.props.match.params.number)
+    BookInfoService(this.props.match.params.number,this.props.tokken)
       .then(e => e.json())
       .then(e => {
         this.setState({ items: e, flag: true });

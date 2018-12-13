@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Modal, MenuItem, Glyphicon } from "react-bootstrap";
 import Styles from "../NavBar/NavBar.css";
 import logo from "../../img/icon.png";
+import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -51,6 +52,16 @@ class NavBar extends React.Component {
               <span>{this.props.name}</span>
             </LinkContainer>
           </MenuItem>
+
+           <MenuItem>
+            <LinkContainer to={{ pathname: '/chatRoom'}}>
+              <span>
+              Bookhub chat room
+              </span>
+            </LinkContainer>
+          </MenuItem>
+
+
           <MenuItem>
             <button className="btn btn-link" onClick={this.handleLogout}>
               <p style={{ color: "black", marginTop: "10px" }}>

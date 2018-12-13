@@ -3,7 +3,6 @@
   height: 100vh;
   /* display: flex; */
   background-image: url('../../img/bookinfo3.jpeg');
-  overflow-x: hidden;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
