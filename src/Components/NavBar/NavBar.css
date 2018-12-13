@@ -22,6 +22,7 @@ nav {
   float: left;
   margin-left: -130px;
   width: 15%;
+  outline: none;
 }
 
 .rightUl {
@@ -62,6 +63,7 @@ nav ul li a {
 
 .logo {
   width: 30%;
+  outline: none;
   height: 131px;
 }
 .book {
@@ -70,6 +72,7 @@ nav ul li a {
 }
 nav ul li span img {
   width: 30%;
+  outline: none;
 }
 
 .rightUl {
@@ -95,7 +98,7 @@ nav ul li span img {
 .rightUll li a {
   padding: 18px;
   font-family: "Open Sans";
-  color: white;
+  color: black;
   font-size: 18px;
   text-decoration: none;
   display: block;
@@ -107,4 +110,8 @@ nav ul li span img {
 .divNav {
   height: auto;
   width: unset;
+}
+
+span{
+  text-transform: capitalize;
 }

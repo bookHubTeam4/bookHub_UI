@@ -38,10 +38,10 @@ export const loginService = (email, password) => {
   });
 };
 
-export const BookInfoService = isbn => {
+export const BookInfoService = (isbn,tokken) => {
   return new Promise((resolve, reject) => {
     console.log("calling with " + isbn);
-    fetch(`https://bookhub-api.herokuapp.com/api/version1/books/${isbn}`, {
+    fetch(`https://bookhub-api.herokuapp.com/api/version1/books?name=${isbn}&token=${tokken}`, {
       method: "GET",
       mode: "cors"
     })
@@ -157,3 +157,20 @@ export const getRecommendation = tokken => {
   });
 };
 
+
+export const getMyShelf = tokken => {
+  return new Promise((resolve, reject) => {
+    fetch(`http://bookhub-api.herokuapp.com/api/version1/user/shelf?user_token=${tokken}`, {
+      method: "GET",
+      mode: "cors"
+    })
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        } else {
+          reject(response);
+        }
+      })
+      .catch(err => reject(err));
+  });
+};

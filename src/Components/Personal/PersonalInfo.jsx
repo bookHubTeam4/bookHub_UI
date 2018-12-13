@@ -7,7 +7,9 @@ class PersonalInfo extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <div style={{position:"absolute",top:"20%",padding:"50px"}}>personal</div>
+        <div style={{position:"absolute",top:"20%",padding:"50px"}}>
+        personal
+        </div>
       </React.Fragment>
     );
   }
