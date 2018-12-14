@@ -440,6 +440,12 @@ class SignInForm extends Component {
               Create an account
             </Link>
           </div>
+          <div className={Style.FormField}>
+           
+            <Link to="/login" className={Style.FormField__Link}>
+              Change Password
+            </Link>
+          </div>
         </form>
         <hr className={Style.hrStyle}></hr>
         Log In with
