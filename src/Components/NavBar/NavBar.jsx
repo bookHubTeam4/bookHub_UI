@@ -132,7 +132,7 @@ class NavBar extends React.Component {
 
     return (
       <React.Fragment>
-        <nav>{navbar}</nav>
+        <nav >{navbar}</nav>
         <div>
           <Modal
             show={this.state.show}
